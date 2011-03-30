@@ -5,7 +5,7 @@
 	Height="300"
 	Width="300">
     <Window.Resources>
-        <Image x:Key="IconOpen" Source="file:///F:/__Devs/dev_center/LightRock/SpriteLightRock/res/icons/menu_file_open.png" />
+        <Image x:Key="IconOpen" Source="Images/add.png" DataContext="{Binding}" />
     </Window.Resources>
     <Grid>
 		<Menu
