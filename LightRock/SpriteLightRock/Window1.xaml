@@ -14,7 +14,18 @@
 			Margin="0,0,0,245"
 			Height="23">
 			<MenuItem
-				Header="_File" />
+				Header="_File"
+				Icon="{Binding}">
+				<MenuItem
+					Header="_Open"
+					Background="Blue">
+                    <MenuItem.Icon>
+                        <Image Source="file:///F:/__Devs/dev_center/LightRock/SpriteLightRock/res/icons/menu_file_open.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+				<MenuItem
+					Header="_Save"></MenuItem>
+			</MenuItem>
 			<MenuItem
 				Header="_Edit" />
 			<MenuItem
