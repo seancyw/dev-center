@@ -15,6 +15,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace SpriteLightRock
 {
@@ -27,5 +28,23 @@ namespace SpriteLightRock
 		{
 			InitializeComponent();
 		}
+
+        private void canvas1_MouseMove(object sender, MouseEventArgs e)
+        {
+            Ellipse myEllipse = new Ellipse();
+            SolidColorBrush mySolidColorBrush = new SolidColorBrush();
+            mySolidColorBrush.Color = Color.FromArgb(255, 255, 255, 0);
+            myEllipse.Fill = mySolidColorBrush;
+            myEllipse.StrokeThickness = 2;
+            myEllipse.Stroke = Brushes.Black;
+
+            myEllipse.Width = 200;
+            myEllipse.Height = 100;
+
+            myEllipse.RenderTransform = new RotateTransform(45);
+            this.canvas1.Children.Add(myEllipse);
+
+            
+        }
 	}
 }

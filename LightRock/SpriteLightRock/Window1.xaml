@@ -34,6 +34,6 @@
 			<MenuItem
 				Header="_Help" />
 		</Menu>
-        <Canvas Height="243" HorizontalAlignment="Left" Margin="24,18,0,0" Name="canvas1" VerticalAlignment="Top" Width="254" Background="#FF33BD7F" DataContext="{Binding Source={StaticResource IconOpen}}" />
+        <Canvas Height="243" HorizontalAlignment="Left" Margin="24,18,0,0" Name="canvas1" VerticalAlignment="Top" Width="254" Background="#FF33BD7F" DataContext="{Binding Source={StaticResource IconOpen}}" MouseMove="canvas1_MouseMove" />
     </Grid>
 </Window>
