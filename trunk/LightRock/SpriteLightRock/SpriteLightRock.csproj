@@ -74,5 +74,12 @@
   <ItemGroup>
     <Page Include="Window1.xaml" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="res" />
+    <Folder Include="res\icons" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\icons\menu_file_open.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>
