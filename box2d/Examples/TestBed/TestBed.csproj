@@ -123,6 +123,7 @@
     <Compile Include="Tests\DistanceTest.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\JointTest.cs" />
     <Compile Include="Tests\Pyramid.cs" />
     <Compile Include="Tests\SimpleTest.cs" />
     <Compile Include="Tests\VerticalStack.cs">
