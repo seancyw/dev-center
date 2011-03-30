@@ -6,6 +6,7 @@
 	Width="300">
     <Window.Resources>
         <Image x:Key="IconOpen" Source="Images/add.png" DataContext="{Binding}" />
+        <Image x:Key="Icon_Save" DataContext="{Binding}" Source="{Binding}" />
     </Window.Resources>
     <Grid>
 		<Menu
@@ -20,10 +21,9 @@
 				Header="_File"
 				Icon="{Binding}">
 				<MenuItem
-					Header="_Open"
-					Background="Blue" Icon="{StaticResource IconOpen}"></MenuItem>
+					Header="_Open" Icon="{StaticResource IconOpen}"></MenuItem>
 				<MenuItem
-					Header="_Save"></MenuItem>
+					Header="_Save" Icon="{StaticResource Icon_Save}"></MenuItem>
 			</MenuItem>
 			<MenuItem
 				Header="_Edit" />
@@ -34,5 +34,6 @@
 			<MenuItem
 				Header="_Help" />
 		</Menu>
-	</Grid>
+        <Canvas Height="243" HorizontalAlignment="Left" Margin="24,18,0,0" Name="canvas1" VerticalAlignment="Top" Width="254" Background="#FF33BD7F" DataContext="{Binding Source={StaticResource IconOpen}}" />
+    </Grid>
 </Window>
