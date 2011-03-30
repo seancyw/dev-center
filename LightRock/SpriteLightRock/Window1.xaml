@@ -4,7 +4,10 @@
 	Title="SLRock"
 	Height="300"
 	Width="300">
-	<Grid>
+    <Window.Resources>
+        <Image x:Key="IconOpen" Source="file:///F:/__Devs/dev_center/LightRock/SpriteLightRock/res/icons/menu_file_open.png" />
+    </Window.Resources>
+    <Grid>
 		<Menu
 			IsMainMenu="True"
 			Grid.Column="0"
@@ -18,11 +21,7 @@
 				Icon="{Binding}">
 				<MenuItem
 					Header="_Open"
-					Background="Blue">
-                    <MenuItem.Icon>
-                        <Image Source="file:///F:/__Devs/dev_center/LightRock/SpriteLightRock/res/icons/menu_file_open.png" />
-                    </MenuItem.Icon>
-                </MenuItem>
+					Background="Blue" Icon="{StaticResource IconOpen}"></MenuItem>
 				<MenuItem
 					Header="_Save"></MenuItem>
 			</MenuItem>
