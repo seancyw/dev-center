@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window
+	x:Class="SpriteLightRock.SprEditorForm" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Title="Sprite Editor"
+	Height="800"
+	Width="1024">    
+    <Grid>
+		<Menu
+			IsMainMenu="True" HorizontalAlignment="Stretch"
+			VerticalAlignment="Stretch"
+			Margin="0,0,0,733">
+			<MenuItem
+				Header="_File">				
+			</MenuItem>
+			<MenuItem
+				Header="_Edit" />
+			<MenuItem
+				Header="_View" />
+            <MenuItem
+				Header="_Help" />
+		</Menu>
+        <DockPanel>
+            <Grid>
+                <Button Width="100" Margin="0,34,0,698" HorizontalAlignment="Left">Load File</Button>
+                <ListView Margin="0,69,502,141" Width="500">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="column1"/>
+                            <GridViewColumn Header="column2"/>
+                            <GridViewColumn Header="column3"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>            
+        </DockPanel>
+    </Grid>
+</Window>
