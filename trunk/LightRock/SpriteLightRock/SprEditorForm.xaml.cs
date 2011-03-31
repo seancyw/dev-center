@@ -20,7 +20,8 @@ using System.Collections;
 
 namespace SpriteLightRock
 {
-    using Sprite;    
+    using Sprite;
+    using System.Windows.Threading;    
 	/// <summary>
 	/// Interaction logic for Window1.xaml
 	/// </summary>
@@ -49,57 +50,31 @@ namespace SpriteLightRock
             {
                 arrListModules.Add(new Module(1, 2, 3, 4));
             }
-            this.lvModules.ItemsSource = arrListModules;            
+            this.lvModules.ItemsSource = arrListModules;
+            ImageSourceConverter imgConv = new ImageSourceConverter();
+            //string path = "pack://application:,,/Images/embe.jpg";
+            string path = @"f:\__Devs\dev_center\LightRock\SpriteLightRock\Images\embe.jpg";
+            ImageSource imageSource = (ImageSource) imgConv.ConvertFromString(path);
+            this.cnvWorkspace.SpriteImage = imageSource;
+            this.cnvWorkspace.MouseMove += new MouseEventHandler(cnvWorkspace_MouseMove);
 		}
 
-        void cnvWorkspace_MouseUp(object sender, MouseButtonEventArgs e)
+        void cnvWorkspace_MouseMove(object sender, MouseEventArgs e)
         {
-            IsDrag = false;
-        }
-
-        void cnvWorkspace_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (IsDrag == false)
-            {
-                IsDrag = true;
-                Canvas canvas = sender as Canvas;
-                point1 = e.GetPosition(canvas);
-                Ellipse el = new Ellipse();
-                el.Width = 2;
-                el.Height = 2;
-                el.Margin = new Thickness(e.GetPosition(canvas).X, e.GetPosition(canvas).Y, 0, 0);
-                el.Fill = Brushes.YellowGreen;
-                canvas.Children.Add(el);                
-            }
-        }
-        
-
-        void cnvWorkspace_DragEnter(object sender, DragEventArgs e)
-        {
-            Canvas canvas = sender as Canvas;
-            Point point1 = e.GetPosition(canvas);
-        }
-
-        private void cnvWorkspace_MouseMove(object sender, MouseEventArgs e)
-        {
-            Canvas canvas = sender as Canvas;
-            //canvas.Children.Clear();
-            Ellipse el = new Ellipse();
-            el.Width = 2;
-            el.Height = 2;
-            el.Margin = new Thickness(e.GetPosition(canvas).X, e.GetPosition(canvas).Y, 0, 0);
-            el.Fill = Brushes.LimeGreen;
-            //canvas.Children.Add(el);
-            if (IsDrag)
-            {
-                Point point2 = e.GetPosition(canvas);
-                Rectangle rect = new Rectangle();
-                rect.Fill = Brushes.Red;                
-                rect.Margin = new Thickness(point1.X, point1.Y, 0, 0);
-                rect.Width = Math.Abs(point2.X- point1.X);
-                rect.Height = Math.Abs(point2.Y- point1.Y);
-                canvas.Children.Add(rect);
-            }
-        }
+            cnvWorkspace.InvalidateVisual();
+            //Khong xai dc
+           // cnvWorkspace.Refresh();
+        }        
 	}
+    public static class ExtensionMethods
+    {
+
+        private static Action EmptyDelegate = delegate() { };
+
+
+        public static void Refresh(this UIElement uiElement)
+        {
+            uiElement.Dispatcher.Invoke(DispatcherPriority.Render, EmptyDelegate);
+        }
+    }
 }
