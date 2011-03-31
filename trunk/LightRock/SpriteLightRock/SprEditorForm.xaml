@@ -18,20 +18,17 @@
 				Header="_View" />
             <MenuItem
 				Header="_Help" />
-		</Menu>
-        <DockPanel>
-            <Grid>
-                <Button Width="100" Margin="0,34,0,698" HorizontalAlignment="Left">Load File</Button>
-                <ListView Margin="0,69,502,141" Width="500">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="column1"/>
-                            <GridViewColumn Header="column2"/>
-                            <GridViewColumn Header="column3"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </Grid>            
-        </DockPanel>
+		</Menu>        
+        <Button Width="100" Margin="0,34,0,698" HorizontalAlignment="Left" Name="btnLoadFile">Load File</Button>
+        <ListView Margin="0,69,502,141" Width="500" Name="lvModules">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="X" DisplayMemberBinding="{Binding Path=X}"/>
+                    <GridViewColumn Header="Y" DisplayMemberBinding="{Binding Path=Y}"/>
+                    <GridViewColumn Header="Width" DisplayMemberBinding="{Binding Path=Width}"/>
+                    <GridViewColumn Header="Height" DisplayMemberBinding="{Binding Path=Height}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
