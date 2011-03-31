@@ -3,7 +3,7 @@
 	x:Class="SpriteLightRock.SprEditorForm" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	Title="Sprite Editor"
 	Height="800"
-	Width="1024">    
+	Width="1024" xmlns:my="clr-namespace:SpriteLightRock.SystemEx">    
     <Grid>
 		<Menu
 			IsMainMenu="True" HorizontalAlignment="Stretch"
@@ -30,6 +30,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Canvas Height="551" HorizontalAlignment="Left" Margin="506,69,0,0" Name="cnvWorkspace" VerticalAlignment="Top" Width="496" MouseMove="cnvWorkspace_MouseMove" Background="#FFC1DE22"/>
+        <my:CanvasEx Height="551" HorizontalAlignment="Left" Margin="506,69,0,0" x:Name="canvasEx1" VerticalAlignment="Top" Width="460" />
     </Grid>
 </Window>

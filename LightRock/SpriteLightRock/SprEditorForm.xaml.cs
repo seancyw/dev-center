@@ -49,10 +49,7 @@ namespace SpriteLightRock
             {
                 arrListModules.Add(new Module(1, 2, 3, 4));
             }
-            this.lvModules.ItemsSource = arrListModules;
-            cnvWorkspace.Background = Brushes.Gray;
-            cnvWorkspace.MouseDown += new MouseButtonEventHandler(cnvWorkspace_MouseDown);
-            cnvWorkspace.MouseUp += new MouseButtonEventHandler(cnvWorkspace_MouseUp);
+            this.lvModules.ItemsSource = arrListModules;            
 		}
 
         void cnvWorkspace_MouseUp(object sender, MouseButtonEventArgs e)
@@ -72,7 +69,7 @@ namespace SpriteLightRock
                 el.Height = 2;
                 el.Margin = new Thickness(e.GetPosition(canvas).X, e.GetPosition(canvas).Y, 0, 0);
                 el.Fill = Brushes.YellowGreen;
-                canvas.Children.Add(el);
+                canvas.Children.Add(el);                
             }
         }
         
