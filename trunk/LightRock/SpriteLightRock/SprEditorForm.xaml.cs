@@ -26,6 +26,21 @@ namespace SpriteLightRock
 	/// </summary>
 	public partial class SprEditorForm : Window
 	{
+        Point point1
+        {
+            get;
+            set;
+        }
+        Point point2
+        {
+            get;
+            set;
+        }
+        Boolean IsDrag
+        {
+            get;
+            set;
+        }
 		public SprEditorForm()
 		{
 			InitializeComponent();
@@ -36,17 +51,58 @@ namespace SpriteLightRock
             }
             this.lvModules.ItemsSource = arrListModules;
             cnvWorkspace.Background = Brushes.Gray;
+            cnvWorkspace.MouseDown += new MouseButtonEventHandler(cnvWorkspace_MouseDown);
+            cnvWorkspace.MouseUp += new MouseButtonEventHandler(cnvWorkspace_MouseUp);
 		}
+
+        void cnvWorkspace_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            IsDrag = false;
+        }
+
+        void cnvWorkspace_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (IsDrag == false)
+            {
+                IsDrag = true;
+                Canvas canvas = sender as Canvas;
+                point1 = e.GetPosition(canvas);
+                Ellipse el = new Ellipse();
+                el.Width = 2;
+                el.Height = 2;
+                el.Margin = new Thickness(e.GetPosition(canvas).X, e.GetPosition(canvas).Y, 0, 0);
+                el.Fill = Brushes.YellowGreen;
+                canvas.Children.Add(el);
+            }
+        }
+        
+
+        void cnvWorkspace_DragEnter(object sender, DragEventArgs e)
+        {
+            Canvas canvas = sender as Canvas;
+            Point point1 = e.GetPosition(canvas);
+        }
 
         private void cnvWorkspace_MouseMove(object sender, MouseEventArgs e)
         {
-            Canvas canvas = sender as Canvas;            
+            Canvas canvas = sender as Canvas;
+            //canvas.Children.Clear();
             Ellipse el = new Ellipse();
             el.Width = 2;
             el.Height = 2;
             el.Margin = new Thickness(e.GetPosition(canvas).X, e.GetPosition(canvas).Y, 0, 0);
             el.Fill = Brushes.LimeGreen;
-            canvas.Children.Add(el);            
+            //canvas.Children.Add(el);
+            if (IsDrag)
+            {
+                Point point2 = e.GetPosition(canvas);
+                Rectangle rect = new Rectangle();
+                rect.Fill = Brushes.Red;                
+                rect.Margin = new Thickness(point1.X, point1.Y, 0, 0);
+                rect.Width = Math.Abs(point2.X- point1.X);
+                rect.Height = Math.Abs(point2.Y- point1.Y);
+                canvas.Children.Add(rect);
+            }
         }
 	}
 }
