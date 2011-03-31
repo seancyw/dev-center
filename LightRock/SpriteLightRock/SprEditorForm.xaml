@@ -30,6 +30,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Canvas Height="551" HorizontalAlignment="Left" Margin="506,69,0,0" Name="cnvWorkspace" VerticalAlignment="Top" Width="496" MouseMove="cnvWorkspace_MouseMove" Background="#FFC1DE22" />
+        <Canvas Height="551" HorizontalAlignment="Left" Margin="506,69,0,0" Name="cnvWorkspace" VerticalAlignment="Top" Width="496" MouseMove="cnvWorkspace_MouseMove" Background="#FFC1DE22"/>
     </Grid>
 </Window>

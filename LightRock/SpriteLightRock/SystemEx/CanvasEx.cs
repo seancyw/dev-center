@@ -12,6 +12,15 @@ using System.Collections;
 namespace SpriteLightRock.SystemEx
 {
     class CanvasEx : Canvas
-    {   
+    {
+        public Image BgImage
+        {
+            get;
+            set;
+        }
+        protected override void OnRender(DrawingContext dc)
+        {
+            base.OnRender(dc);
+        }
     }
 }
