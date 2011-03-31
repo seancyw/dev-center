@@ -13,7 +13,7 @@ namespace SpriteLightRock.SystemEx
 {
     class CanvasEx : Canvas
     {
-        public Image BgImage
+        public ImageSource Image
         {
             get;
             set;
@@ -21,6 +21,10 @@ namespace SpriteLightRock.SystemEx
         protected override void OnRender(DrawingContext dc)
         {
             base.OnRender(dc);
+            if (Image != null)
+            {
+                dc.DrawImage(Image, new Rect(0, 0, Image.Width, Image.Height));
+            }
         }
     }
 }
