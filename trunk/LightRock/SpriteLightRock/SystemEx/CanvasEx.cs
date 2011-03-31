@@ -41,8 +41,8 @@ namespace SpriteLightRock.SystemEx
                 dc.DrawImage(SpriteImage, new Rect(0, 0, SpriteImage.Width, SpriteImage.Height));
             }
             Pen p = new Pen(Brushes.Green,1);
-            dc.DrawRectangle(Brushes.Red, p, new Rect(Point1, Point2));
-            Console.Write(String.Format("{0} {1}", Point1.X, Point1.Y));
+            dc.DrawRectangle(Brushes.Transparent, p, new Rect(Point1, Point2));
+            Console.Write(String.Format("{0} {1}", Point1.X, Point1.Y));            
         }
         protected override void OnMouseDown(MouseButtonEventArgs e)
         {

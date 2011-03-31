@@ -30,6 +30,11 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <SysEx:CanvasEx Height="551" HorizontalAlignment="Left" Margin="506,69,0,0" x:Name="cnvWorkspace" VerticalAlignment="Top" Width="496" />
+        <SysEx:CanvasEx Height="551" HorizontalAlignment="Left" Margin="506,69,0,0" x:Name="cnvWorkspace" VerticalAlignment="Top" Width="496">
+            <Canvas.LayoutTransform>
+                <ScaleTransform ScaleX="{Binding Path=Value, ElementName=zoomSlider}" ScaleY="{Binding Path=Value, ElementName=zoomSlider}"/>
+            </Canvas.LayoutTransform>
+        </SysEx:CanvasEx>
+        <Slider Height="23" HorizontalAlignment="Left" Margin="134,639,0,0" Name="zoomSlider" VerticalAlignment="Top" Width="100" Minimum="0.1" Maximum="5" Value="1"/>
     </Grid>
 </Window>
