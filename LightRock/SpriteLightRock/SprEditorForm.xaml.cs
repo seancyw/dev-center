@@ -50,7 +50,7 @@ namespace SpriteLightRock
             {
                 arrListModules.Add(new Module(1, 2, 3, 4));
             }
-            this.lvModules.ItemsSource = arrListModules;
+            this.lvModules.ItemsSource = arrListModules;            
             ImageSourceConverter imgConv = new ImageSourceConverter();
             //string path = "pack://application:,,/Images/embe.jpg";
             string path = @"f:\__Devs\dev_center\LightRock\SpriteLightRock\Images\embe.jpg";
