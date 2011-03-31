@@ -16,9 +16,11 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Collections;
 
 namespace SpriteLightRock
 {
+    using Sprite;    
 	/// <summary>
 	/// Interaction logic for Window1.xaml
 	/// </summary>
@@ -27,6 +29,12 @@ namespace SpriteLightRock
 		public SprEditorForm()
 		{
 			InitializeComponent();
-		}        
+            ArrayList arrListModules = new ArrayList();
+            for (int i = 0; i < 10; i++)
+            {
+                arrListModules.Add(new Module(1, 2, 3, 4));
+            }
+            this.lvModules.ItemsSource = arrListModules;
+		}
 	}
 }
