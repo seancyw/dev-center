@@ -35,6 +35,18 @@ namespace SpriteLightRock
                 arrListModules.Add(new Module(1, 2, 3, 4));
             }
             this.lvModules.ItemsSource = arrListModules;
+            cnvWorkspace.Background = Brushes.Gray;
 		}
+
+        private void cnvWorkspace_MouseMove(object sender, MouseEventArgs e)
+        {
+            Canvas canvas = sender as Canvas;            
+            Ellipse el = new Ellipse();
+            el.Width = 2;
+            el.Height = 2;
+            el.Margin = new Thickness(e.GetPosition(canvas).X, e.GetPosition(canvas).Y, 0, 0);
+            el.Fill = Brushes.LimeGreen;
+            canvas.Children.Add(el);            
+        }
 	}
 }
