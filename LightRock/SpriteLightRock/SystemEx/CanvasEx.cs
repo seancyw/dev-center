@@ -70,7 +70,17 @@ namespace SpriteLightRock.SystemEx
                 dc.DrawImage(SpriteImage, new Rect(0, 0, SpriteImage.Width, SpriteImage.Height));
             }
             Pen p = new Pen(Brushes.Green,1);
-            dc.DrawRectangle(Brushes.Transparent, p, new Rect(PointFressed, PointCurrent));
+            if (IsDrag)
+            {
+                dc.DrawRectangle(Brushes.Transparent, p, new Rect(PointFressed, PointCurrent));
+            }
+            p = new Pen(Brushes.Red, 1);
+            int moduleActiveId = CurrentSprite.GetActiveModuleId(PointCurrent);
+            if (moduleActiveId != -1)
+            {
+                Module m = CurrentSprite.GetModule(moduleActiveId);
+                dc.DrawRectangle(Brushes.Transparent, p, m.GetBoundRect());
+            }
 #if DEBUG
             Console.Write(String.Format("{0} {1}", PointFressed.X, PointFressed.Y));            
 #endif
@@ -87,11 +97,7 @@ namespace SpriteLightRock.SystemEx
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
-            if (IsDrag)
-            {
-                PointCurrent = e.GetPosition(this);                
-            }
-            UpdateLayout();            
+            PointCurrent = e.GetPosition(this);
         }
         protected override void OnMouseUp(MouseButtonEventArgs e)
         {
@@ -99,7 +105,7 @@ namespace SpriteLightRock.SystemEx
             if (IsDrag == true)
             {
                 Rect rect = new Rect(PointFressed, PointCurrent);
-                CurrentSprite.Modules.Add(new Module(10,(int)rect.Top,(int)rect.Left,(int)rect.Width,(int)rect.Height));
+                CurrentSprite.Modules.Add(new Module(CurrentSprite.GetAutoGenerateModuleId(), (int)rect.Left, (int)rect.Top, (int)rect.Width, (int)rect.Height));
                 IsDrag = false;
             }
         }

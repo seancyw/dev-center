@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
+using System.Windows.Shapes;
+using System.Windows;
+using System.Windows.Input;
 namespace SpriteLightRock.Sprites
 {
     enum ModuleType : byte
@@ -115,6 +118,22 @@ namespace SpriteLightRock.Sprites
         public Module(int id, int x, int y, int w, int h)
             :this(ModuleType.Image,id,x,y,w,h)
         {
+        }
+        public bool IsInside(Point p)
+        {
+            if (Type == ModuleType.Image)
+            {
+                return p.X >= X && p.Y >= Y && p.X <= (X + Width) && p.Y <= (Y + Height);
+            }
+            return false;
+        }
+        public Rect GetBoundRect()
+        {
+            return new Rect(X, Y, Width, Height);
+        }
+        protected void OnMouseMove(MouseEventArgs e)
+        {
+            e.MouseDevice.OverrideCursor = Cursors.Hand;
         }
     }
 }
