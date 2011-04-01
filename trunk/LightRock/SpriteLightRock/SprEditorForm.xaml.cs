@@ -20,7 +20,7 @@ using System.Collections;
 
 namespace SpriteLightRock
 {
-    using Sprite;
+    using Sprites;
     using System.Windows.Threading;    
 	/// <summary>
 	/// Interaction logic for Window1.xaml
@@ -45,12 +45,12 @@ namespace SpriteLightRock
 		public SprEditorForm()
 		{
 			InitializeComponent();
-            ArrayList arrListModules = new ArrayList();
+            Sprite sprite = new Sprite();
             for (int i = 0; i < 10; i++)
             {
-                arrListModules.Add(new Module(1, 2, 3, 4));
+                sprite.Modules.Add(new Module(i+1,1, 2, 3, 4));
             }
-            this.lvModules.ItemsSource = arrListModules;            
+            this.lvModules.ItemsSource = sprite.Modules;
             ImageSourceConverter imgConv = new ImageSourceConverter();
             //string path = "pack://application:,,/Images/embe.jpg";
             string path = @"f:\__Devs\dev_center\LightRock\SpriteLightRock\Images\embe.jpg";

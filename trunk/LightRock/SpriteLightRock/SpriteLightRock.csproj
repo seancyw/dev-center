@@ -69,8 +69,11 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\WPFAssemblyInfo.cs" />
-    <Compile Include="Sprite\FModule.cs" />
-    <Compile Include="Sprite\Module.cs" />
+    <Compile Include="Sprites\AFrame.cs" />
+    <Compile Include="Sprites\FModule.cs" />
+    <Compile Include="Sprites\Frame.cs" />
+    <Compile Include="Sprites\Module.cs" />
+    <Compile Include="Sprites\Sprite.cs" />
     <Compile Include="SriteEditor.xaml.cs">
       <DependentUpon>SriteEditor.xaml</DependentUpon>
     </Compile>
