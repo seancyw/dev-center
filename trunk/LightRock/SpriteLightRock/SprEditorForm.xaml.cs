@@ -20,15 +20,29 @@ namespace SpriteLightRock
     /// </summary>
     public partial class SprEditorForm : UserControl
     {
+        Sprite sprite = new Sprite();
         public SprEditorForm()
         {
-            InitializeComponent();
-            Sprite sprite = new Sprite();
+            InitializeComponent();            
+            sprite.SetImage(@"d:\Images\embe.jpg");
             for(int i = 0; i < 10; i++)
             {
                 sprite.Modules.Add(new Module(i+1,1,2,3,4));
             }
-            lvViewModules.ItemsSource = sprite.Modules;
+            lvViewModules.ItemsSource = sprite.Modules;            
+            canvasEx1.SetSprite(sprite);
+            MouseMove += new MouseEventHandler(SprEditorForm_MouseMove);
+        }
+
+        void SprEditorForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            
+            //lvViewModules.UpdateLayout();
+            //lvViewModules.InvalidateVisual();            
+            //lvViewModules.InvalidateProperty(ListView.ItemsSourceProperty);
+            lvViewModules.InvalidateProperty(ListView.ItemsSourceProperty);
+            //this.InvalidateVisual();
+            //lvViewModules.ItemsSource = sprite.Modules;            
         }
     }
 }

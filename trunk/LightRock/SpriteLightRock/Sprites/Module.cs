@@ -103,7 +103,7 @@ namespace SpriteLightRock.Sprites
             set { _y3 = value; }
         }
         
-        public Module(ModuleType type, int id, int x, int y, int w, int h)
+        public Module(ModuleType type, int id, int x, int y, int w, int h)            
         {
             Type = type;
             Id = id;
