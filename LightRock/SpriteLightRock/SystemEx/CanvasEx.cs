@@ -11,27 +11,56 @@ using System.Windows.Shapes;
 using System.Collections;
 namespace SpriteLightRock.SystemEx
 {
+    using Sprites;
     class CanvasEx : Canvas
     {
+        private static Sprite           _currentSprite;
+        private static ImageSource      _sprImage;
+        private Point _currentPoint;
+        public Sprite CurrentSprite
+        {
+            get
+            {
+                return _currentSprite;
+            }
+        }
+        public void SetSprite(Sprite sprite)
+        {
+            _currentSprite = sprite;
+        }
+        
+        public ImageSource SpriteImage { 
+            get {
+                if (_sprImage == null)
+                {
+                    if (String.IsNullOrEmpty(CurrentSprite.ImagePath))
+                        return null;
+                    ImageSourceConverter imgConv = new ImageSourceConverter();
+                    _sprImage = (ImageSource)imgConv.ConvertFromString(CurrentSprite.ImagePath);
+                }
+                return _sprImage;
+            } 
+        }
         public bool IsDrag
         {
             get;
             set;
         }
-        public Point Point1
+        public Point PointFressed
         {
             get;
             set;
         }
-        public Point Point2
+        public Point PointCurrent
         {
-            get;
-            set;
-        }
-        public ImageSource SpriteImage
-        {
-            get;
-            set;
+            get { return _currentPoint; }
+            set{
+                if (_currentPoint != value)
+                {
+                    _currentPoint = value;
+                    this.InvalidateVisual();
+                }
+            }
         }
         protected override void OnRender(DrawingContext dc)
         {
@@ -41,8 +70,10 @@ namespace SpriteLightRock.SystemEx
                 dc.DrawImage(SpriteImage, new Rect(0, 0, SpriteImage.Width, SpriteImage.Height));
             }
             Pen p = new Pen(Brushes.Green,1);
-            dc.DrawRectangle(Brushes.Transparent, p, new Rect(Point1, Point2));
-            Console.Write(String.Format("{0} {1}", Point1.X, Point1.Y));            
+            dc.DrawRectangle(Brushes.Transparent, p, new Rect(PointFressed, PointCurrent));
+#if DEBUG
+            Console.Write(String.Format("{0} {1}", PointFressed.X, PointFressed.Y));            
+#endif
         }
         protected override void OnMouseDown(MouseButtonEventArgs e)
         {
@@ -50,7 +81,7 @@ namespace SpriteLightRock.SystemEx
             if (IsDrag == false)
             {
                 IsDrag = true;
-                Point1 = e.GetPosition(this);                
+                PointFressed = e.GetPosition(this);                
             }
         }
         protected override void OnMouseMove(MouseEventArgs e)
@@ -58,14 +89,19 @@ namespace SpriteLightRock.SystemEx
             base.OnMouseMove(e);
             if (IsDrag)
             {
-                Point2 = e.GetPosition(this);                
+                PointCurrent = e.GetPosition(this);                
             }
             UpdateLayout();            
         }
         protected override void OnMouseUp(MouseButtonEventArgs e)
         {
             base.OnMouseUp(e);
-            IsDrag = false;
+            if (IsDrag == true)
+            {
+                Rect rect = new Rect(PointFressed, PointCurrent);
+                CurrentSprite.Modules.Add(new Module(10,(int)rect.Top,(int)rect.Left,(int)rect.Width,(int)rect.Height));
+                IsDrag = false;
+            }
         }
     }
 }

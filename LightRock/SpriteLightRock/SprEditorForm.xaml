@@ -4,18 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="447" d:DesignWidth="800">
+             d:DesignHeight="447" d:DesignWidth="800" xmlns:my="clr-namespace:SpriteLightRock.SystemEx">
     <Grid>
-        <ListView x:Name="lvViewModules">
+        <ListView x:Name="lvViewModules" Margin="0,0,545,0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="140" Header="Id" DisplayMemberBinding="{Binding Id}"/>
-                    <GridViewColumn Width="140" Header="X" DisplayMemberBinding="{Binding X}"/>
-                    <GridViewColumn Width="140" Header="Y" DisplayMemberBinding="{Binding Y}"/>
-                    <GridViewColumn Width="140" Header="Width" DisplayMemberBinding="{Binding Width}"/>
-                    <GridViewColumn Width="140" Header="Height" DisplayMemberBinding="{Binding Height}"/>
+                    <GridViewColumn Width="50" Header="Id" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Width="50" Header="X" DisplayMemberBinding="{Binding X}"/>
+                    <GridViewColumn Width="50" Header="Y" DisplayMemberBinding="{Binding Y}"/>
+                    <GridViewColumn Width="50" Header="Width" DisplayMemberBinding="{Binding Width}"/>
+                    <GridViewColumn Width="50" Header="Height" DisplayMemberBinding="{Binding Height}"/>
                 </GridView>
             </ListView.View>
         </ListView>
+        <my:CanvasEx Height="447" HorizontalAlignment="Left" Margin="261,0,0,0" x:Name="canvasEx1" VerticalAlignment="Top" Width="539" />
     </Grid>
 </UserControl>
