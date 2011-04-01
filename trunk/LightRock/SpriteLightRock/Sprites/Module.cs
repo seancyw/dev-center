@@ -14,97 +14,80 @@ namespace SpriteLightRock.Sprites
         Rectangle,
         Ellipse,
         Triangle
-    } 
-    [StructLayout(LayoutKind.Explicit)]
-    class Module
+    }     
+    class Module : DependencyObject
     {
-        //
-        [FieldOffset(0)]
-        private ModuleType _kind;
-        [FieldOffset(1)]
-        private int _id;
-        [FieldOffset(5)]
-        private int _x;
-        [FieldOffset(9)]
-        private int _y;
-        //Image & Rectangle & Ellipse
-        [FieldOffset(13)]
-        private int _w;
-        [FieldOffset(17)]
-        private int _h;        
-        //Triangle
-        [FieldOffset(5)]
-        private int _x1;
-        [FieldOffset(9)]
-        private int _y1;
-        [FieldOffset(13)]
-        private int _x2;
-        [FieldOffset(17)]
-        private int _y2;
-        [FieldOffset(21)]
-        private int _x3;
-        [FieldOffset(25)]
-        private int _y3;
-
+        public static readonly DependencyProperty TypeProperty = DependencyProperty.Register(
+            "Type",
+            typeof(ModuleType),
+            typeof(Module),
+            new UIPropertyMetadata(null)
+        );
         private ModuleType Type
         {
-            get { return _kind; }
-            set { _kind = value; }
+            get { return (ModuleType)GetValue(TypeProperty); }
+            set { SetValue(TypeProperty, value); }
         }
+        #region Id
+        public static readonly DependencyProperty IdProperty = DependencyProperty.Register(
+            "Id",
+            typeof(int),
+            typeof(Module),
+            new UIPropertyMetadata(null)
+        );
         public int Id
         {
-            get { return _id;}
-            set { _id = value; }
+            get { return (int)GetValue(IdProperty); }
+            set { SetValue(IdProperty, value); }
         }
+        #endregion
+
+        #region <bold>X</bold>
+        public static readonly DependencyProperty XProperty = DependencyProperty.Register(
+            "X",
+            typeof(int),
+            typeof(Module),
+            new UIPropertyMetadata(null)
+        );
         public int X {
-            get { return _x; }
-            set{ _x = value; } 
+            get { return (int)GetValue(XProperty); }
+            set { SetValue(XProperty, value); }
         }
-        
-        public int Y { 
-            get{return _y;}
-            set { _y = value; }
+        #endregion
+
+
+        public static readonly DependencyProperty YProperty = DependencyProperty.Register(
+            "Y",
+            typeof(int),
+            typeof(Module),
+            new UIPropertyMetadata(null)
+        );
+        public int Y {
+            get { return (int)GetValue(YProperty); }
+            set { SetValue(YProperty, value); }
         }
-        
+
+        public static readonly DependencyProperty WidthProperty = DependencyProperty.Register(
+            "Width",
+            typeof(int),
+            typeof(Module),
+            new UIPropertyMetadata(null)
+        );
         public int Width {
-            get { return _w; }
-            set { _w = value; } 
+            get { return (int)GetValue(WidthProperty); }
+            set { SetValue(WidthProperty, value); }
         }
-        
+
+        public static readonly DependencyProperty HeightProperty = DependencyProperty.Register(
+            "Height",
+            typeof(int),
+            typeof(Module),
+            new UIPropertyMetadata(null)
+        );
         public int Height {
-            get { return _h; }
-            set {_h = value; }
-        }
-        public int X1
-        {
-            get { return _x1; }
-            set { _x1 = value; }
-        }
-        public int Y1
-        {
-            get { return _y1; }
-            set { _y1 = value; }
-        }
-        public int X2
-        {
-            get { return _x2; }
-            set { _x1 = value; }
-        }
-        public int Y2
-        {
-            get { return _y2; }
-            set { _y2 = value; }
-        }
-        public int X3
-        {
-            get { return _x3; }
-            set { _x3 = value; }
-        }
-        public int Y3
-        {
-            get { return _y3; }
-            set { _y3 = value; }
-        }
+            get { return (int)GetValue(HeightProperty); }
+            set { SetValue(HeightProperty, value); }
+        }        
         
         public Module(ModuleType type, int id, int x, int y, int w, int h)            
         {
