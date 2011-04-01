@@ -18,7 +18,7 @@
               Converter={StaticResource boolToVis}, 
                          ConverterParameter=False}" />
         </Style>
-        <Style TargetType="{x:Type FrameworkElement}" 
+        <Style TargetType="{x:Type TextBox}" 
            x:Key="GridEditStyle">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Visibility" 
