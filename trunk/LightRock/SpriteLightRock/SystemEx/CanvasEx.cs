@@ -33,7 +33,7 @@ namespace SpriteLightRock.SystemEx
             get {
                 if (_sprImage == null)
                 {
-                    if (String.IsNullOrEmpty(CurrentSprite.ImagePath))
+                    if (CurrentSprite == null)
                         return null;
                     ImageSourceConverter imgConv = new ImageSourceConverter();
                     _sprImage = (ImageSource)imgConv.ConvertFromString(CurrentSprite.ImagePath);
@@ -65,6 +65,8 @@ namespace SpriteLightRock.SystemEx
         protected override void OnRender(DrawingContext dc)
         {
             base.OnRender(dc);
+            if (CurrentSprite == null)
+                return;
             if (SpriteImage != null)
             {
                 dc.DrawImage(SpriteImage, new Rect(0, 0, SpriteImage.Width, SpriteImage.Height));
