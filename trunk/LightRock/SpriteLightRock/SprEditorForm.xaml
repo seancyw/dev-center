@@ -33,21 +33,53 @@
         <ListView x:Name="lvViewModules" Margin="0,0,545,0">
             <ListView.View>
                 <GridView>
+                    <GridViewColumn Width="50" Header="Id" DisplayMemberBinding="{Binding Path=Id}">                        
+                    </GridViewColumn>
                     <GridViewColumn Width="50">
-                        <GridViewColumnHeader Content="Id" />
+                        <GridViewColumnHeader Content="X" />
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid>
-                                    <TextBlock Text="{Binding Path=Id}" Style="{StaticResource GridBlockStyle}"/>
-                                    <TextBox Text="{Binding Path=Id}" Style="{StaticResource GridEditStyle}"/>
+                                    <TextBlock Text="{Binding Path=X}" Style="{StaticResource GridBlockStyle}"/>
+                                    <TextBox Text="{Binding Path=X}" Style="{StaticResource GridEditStyle}"/>
                                 </Grid>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="50" Header="X" DisplayMemberBinding="{Binding X}"/>
-                    <GridViewColumn Width="50" Header="Y" DisplayMemberBinding="{Binding Y}"/>
-                    <GridViewColumn Width="50" Header="Width" DisplayMemberBinding="{Binding Width}"/>
-                    <GridViewColumn Width="50" Header="Height" DisplayMemberBinding="{Binding Height}"/>
+                    <GridViewColumn Width="50">
+                        <GridViewColumnHeader Content="Y" />
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <TextBlock Text="{Binding Path=Y}" Style="{StaticResource GridBlockStyle}"/>
+                                    <TextBox Text="{Binding Path=Y}" Style="{StaticResource GridEditStyle}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="50">
+                        <GridViewColumnHeader Content="Width" />
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <TextBlock Text="{Binding Path=Width}" Style="{StaticResource GridBlockStyle}"/>
+                                    <TextBox Text="{Binding Path=Width}" Style="{StaticResource GridEditStyle}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Width="50">
+                        <GridViewColumnHeader Content="Height" />
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <TextBlock Text="{Binding Path=Height}" Style="{StaticResource GridBlockStyle}"/>
+                                    <TextBox Text="{Binding Path=Height}" Style="{StaticResource GridEditStyle}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
