@@ -22,6 +22,7 @@ namespace SpriteLightRock.Sprites
         private string          _imagePath;
         private ViewState       _viewState;
         //@Reference: http://www.switchonthecode.com/tutorials/wpf-tutorial-using-the-listview-part-1
+        //&http://msdn.microsoft.com/en-us/library/ms752347%28v=VS.85%29.aspx
         public ObservableCollection<Module> Modules
         {
             get
