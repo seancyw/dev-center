@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections.ObjectModel;
-
+using System.Windows;
 namespace SpriteLightRock.Sprites
 {
     enum ViewState{
@@ -57,6 +57,31 @@ namespace SpriteLightRock.Sprites
         {
             Modules = new ObservableCollection<Module>();
             View        = ViewState.Module;
+        }
+        public Module GetModule(int moduleId)
+        {
+            for (int i = 0; i < Modules.Count; i++)
+            {
+                if (Modules[i].Id == moduleId)
+                    return Modules[i];
+            }
+            return null;
+        }
+        public int GetAutoGenerateModuleId()
+        {
+            //Cho nay code khong dung, nhung tam vay
+            if (Modules.Count == 0)
+                return 1;
+            return Modules[Modules.Count - 1].Id + 1;
+        }
+        public int GetActiveModuleId(Point p)
+        {
+            for (int i = 0; i < Modules.Count; i++)
+            {
+                if(Modules[i].IsInside(p))
+                    return Modules[i].Id;
+            }
+            return -1;
         }
     }
 }
