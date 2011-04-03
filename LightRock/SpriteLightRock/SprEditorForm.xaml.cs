@@ -24,7 +24,7 @@ namespace SpriteLightRock
         public SprEditorForm()
         {
             InitializeComponent();            
-            sprite.SetImage(@"d:\Images\embe.jpg");
+            sprite.SetImage(@"E:\image\anhvui_chatvoihang.jpg");
             for(int i = 0; i < 10; i++)
             {
                 sprite.Modules.Add(new Module(i+1,1,2,3,4));
@@ -32,6 +32,7 @@ namespace SpriteLightRock
             lvViewModules.ItemsSource = sprite.Modules;            
             canvasEx1.SetSprite(sprite);
             MouseMove += new MouseEventHandler(SprEditorForm_MouseMove);
+            //Test
         }
 
         void SprEditorForm_MouseMove(object sender, MouseEventArgs e)
