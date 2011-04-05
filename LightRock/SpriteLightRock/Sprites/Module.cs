@@ -8,8 +8,12 @@ using System.Windows;
 using System.Windows.Input;
 namespace SpriteLightRock.Sprites
 {
-    class Module : SpriteObj
+    class Module : SpriteLowObject
     {
+        private class LocalDef
+        {
+            public const int FRE_FIX = 0x0100;
+        }
         public static readonly DependencyProperty TypeProperty = DependencyProperty.Register(
             "Type",
             typeof(ModuleType),
@@ -42,16 +46,23 @@ namespace SpriteLightRock.Sprites
         public int Height {
             get { return (int)GetValue(HeightProperty); }
             set { SetValue(HeightProperty, value); }
-        }        
+        }
         
+        public override int PreFixId
+        {
+            get
+            {
+                return LocalDef.FRE_FIX;
+            }
+        }
         public Module(ModuleType type, int id, int x, int y, int w, int h)            
         {
-            Type = type;
-            Id = id;
-            X = x;
-            Y = y;
-            Width = w;
-            Height = h;
+            Type        = type;
+            Id          = id;
+            X           = x;
+            Y           = y;
+            Width       = w;
+            Height      = h;
         }
         public Module(int id, int x, int y, int w, int h)
             :this(ModuleType.Image,id,x,y,w,h)
@@ -72,10 +83,6 @@ namespace SpriteLightRock.Sprites
         protected void OnMouseMove(MouseEventArgs e)
         {
             e.MouseDevice.OverrideCursor = Cursors.Hand;
-        }
-        public override int GetPreFixId()
-        {
-            return 0x1000;
-        }
+        }        
     }
 }
