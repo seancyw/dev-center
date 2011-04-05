@@ -74,6 +74,8 @@
     <Compile Include="Sprites\Frame.cs" />
     <Compile Include="Sprites\Module.cs" />
     <Compile Include="Sprites\Sprite.cs" />
+    <Compile Include="Sprites\SpriteHightObject.cs" />
+    <Compile Include="Sprites\SpriteLowObject.cs" />
     <Compile Include="SriteEditor.xaml.cs">
       <DependentUpon>SriteEditor.xaml</DependentUpon>
     </Compile>
