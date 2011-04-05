@@ -32,13 +32,13 @@ namespace SpriteLightRock.Sprites
         #region <bold>X</bold>
         public static readonly DependencyProperty XProperty = DependencyProperty.Register(
             "X",
-            typeof(int),
+            typeof(double),
             typeof(SpriteLowObject),
             new UIPropertyMetadata(null)
         );
-        public int X
+        public double X
         {
-            get { return (int)GetValue(XProperty); }
+            get { return (double)GetValue(XProperty); }
             set { SetValue(XProperty, value); }
         }
         #endregion
@@ -46,18 +46,25 @@ namespace SpriteLightRock.Sprites
 
         public static readonly DependencyProperty YProperty = DependencyProperty.Register(
             "Y",
-            typeof(int),
+            typeof(double),
             typeof(SpriteLowObject),
             new UIPropertyMetadata(null)
         );
-        public int Y
+        public double Y
         {
-            get { return (int)GetValue(YProperty); }
+            get { return (double)GetValue(YProperty); }
             set { SetValue(YProperty, value); }
         }
         public virtual int PreFixId
         {
             get { return 0; }
+        }
+
+        public SpriteLowObject(int id, double x, double y)
+        {
+            Id = id;
+            X = x;
+            Y = y;
         }
     }
 }
