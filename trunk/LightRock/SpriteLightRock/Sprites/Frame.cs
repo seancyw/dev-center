@@ -9,7 +9,7 @@ namespace SpriteLightRock.Sprites
     {
         private class LocalDef
         {
-            public const int FRE_FIX = 0x0200;
+            public const int FRE_FIX = 0x0200;            
         }
         private List<FModule> _listFModules;
 
@@ -28,5 +28,15 @@ namespace SpriteLightRock.Sprites
             get { return _listFModules; }
             set { _listFModules = value; }
         }
+        public Frame(
+            int id,
+            int referenceId,
+            double x,
+            double y
+        )
+            : base(id,referenceId,x,y)
+        {
+        }
+
     }
 }

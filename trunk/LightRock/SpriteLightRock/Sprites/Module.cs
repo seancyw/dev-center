@@ -13,38 +13,28 @@ namespace SpriteLightRock.Sprites
         private class LocalDef
         {
             public const int FRE_FIX = 0x0100;
-        }
-        public static readonly DependencyProperty TypeProperty = DependencyProperty.Register(
-            "Type",
-            typeof(ModuleType),
-            typeof(Module),
-            new UIPropertyMetadata(null)
-        );
-        private ModuleType Type
-        {
-            get { return (ModuleType)GetValue(TypeProperty); }
-            set { SetValue(TypeProperty, value); }
-        }
+        }        
 
         public static readonly DependencyProperty WidthProperty = DependencyProperty.Register(
             "Width",
-            typeof(int),
+            typeof(double),
             typeof(Module),
             new UIPropertyMetadata(null)
         );
-        public int Width {
-            get { return (int)GetValue(WidthProperty); }
+        public double Width {
+            get { return (double)GetValue(WidthProperty); }
             set { SetValue(WidthProperty, value); }
         }
 
         public static readonly DependencyProperty HeightProperty = DependencyProperty.Register(
             "Height",
-            typeof(int),
+            typeof(double),
             typeof(Module),
             new UIPropertyMetadata(null)
         );
-        public int Height {
-            get { return (int)GetValue(HeightProperty); }
+        public double Height
+        {
+            get { return (double)GetValue(HeightProperty); }
             set { SetValue(HeightProperty, value); }
         }
         
@@ -55,26 +45,19 @@ namespace SpriteLightRock.Sprites
                 return LocalDef.FRE_FIX;
             }
         }
-        public Module(ModuleType type, int id, int x, int y, int w, int h)            
+        public Module(ModuleType type, int id, double x, double y, double w, double h)
+            :base(id,x,y)
         {
-            Type        = type;
-            Id          = id;
-            X           = x;
-            Y           = y;
             Width       = w;
             Height      = h;
         }
-        public Module(int id, int x, int y, int w, int h)
+        public Module(int id, double x, double y, double w, double h)
             :this(ModuleType.Image,id,x,y,w,h)
         {
         }
         public bool IsInside(Point p)
         {
-            if (Type == ModuleType.Image)
-            {
-                return p.X >= X && p.Y >= Y && p.X <= (X + Width) && p.Y <= (Y + Height);
-            }
-            return false;
+            return p.X >= X && p.Y >= Y && p.X <= (X + Width) && p.Y <= (Y + Height);
         }
         public Rect GetBoundRect()
         {
