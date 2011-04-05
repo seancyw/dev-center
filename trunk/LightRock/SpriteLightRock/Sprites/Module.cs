@@ -8,14 +8,7 @@ using System.Windows;
 using System.Windows.Input;
 namespace SpriteLightRock.Sprites
 {
-    enum ModuleType : byte
-    {
-        Image,
-        Rectangle,
-        Ellipse,
-        Triangle
-    }     
-    class Module : DependencyObject
+    class Module : SpriteObj
     {
         public static readonly DependencyProperty TypeProperty = DependencyProperty.Register(
             "Type",
@@ -27,44 +20,6 @@ namespace SpriteLightRock.Sprites
         {
             get { return (ModuleType)GetValue(TypeProperty); }
             set { SetValue(TypeProperty, value); }
-        }
-        #region Id
-        public static readonly DependencyProperty IdProperty = DependencyProperty.Register(
-            "Id",
-            typeof(int),
-            typeof(Module),
-            new UIPropertyMetadata(null)
-        );
-        public int Id
-        {
-            get { return (int)GetValue(IdProperty); }
-            set { SetValue(IdProperty, value); }
-        }
-        #endregion
-
-        #region <bold>X</bold>
-        public static readonly DependencyProperty XProperty = DependencyProperty.Register(
-            "X",
-            typeof(int),
-            typeof(Module),
-            new UIPropertyMetadata(null)
-        );
-        public int X {
-            get { return (int)GetValue(XProperty); }
-            set { SetValue(XProperty, value); }
-        }
-        #endregion
-
-
-        public static readonly DependencyProperty YProperty = DependencyProperty.Register(
-            "Y",
-            typeof(int),
-            typeof(Module),
-            new UIPropertyMetadata(null)
-        );
-        public int Y {
-            get { return (int)GetValue(YProperty); }
-            set { SetValue(YProperty, value); }
         }
 
         public static readonly DependencyProperty WidthProperty = DependencyProperty.Register(
@@ -117,6 +72,10 @@ namespace SpriteLightRock.Sprites
         protected void OnMouseMove(MouseEventArgs e)
         {
             e.MouseDevice.OverrideCursor = Cursors.Hand;
+        }
+        public override int GetPreFixId()
+        {
+            return 0x1000;
         }
     }
 }
