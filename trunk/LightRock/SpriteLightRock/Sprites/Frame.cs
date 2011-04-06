@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace SpriteLightRock.Sprites
 {
-    class Frame : ReferentSpriteObject
+    class Frame : SpriteObject
     {
         private class LocalDef
         {
@@ -14,33 +15,37 @@ namespace SpriteLightRock.Sprites
         private List<FModule> _listFModules;
 
 
-        public override int PreFixId
-        {
-            get
-            {
-                return LocalDef.FRE_FIX;
-            }
-        }
-
-        //
         public List<FModule> FModules
         {
             get { return _listFModules; }
             set { _listFModules = value; }
         }
         public Frame(
-            int id,
-            int referenceId,
+            int id,            
             double x,
             double y
         )
-            : base(id,referenceId,x,y)
+            : base(id,x,y)
         {
         }
-        public bool Add(Module module)
+        public bool Add(Module module,double x, double y)
         {
-            return false;
+            Debug.Assert(module == null,"Could not add null module");
+            //
+            FModule fModule = new FModule(module, x, y);
+            FModules.Add(fModule);
+            return true;
         }
-
+        private double _getWidth()
+        {
+            int n = FModules.Count;
+            double minX = Double.MaxValue;
+            double maxX = Double.MinValue;
+            for (int i = 0; i < n; i++)
+            {
+                
+            }
+            return 0;
+        }
     }
 }
