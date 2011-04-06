@@ -15,6 +15,11 @@ namespace SpriteLightRock.Sprites
     }  
     class SpriteLowObject : DependencyObject
     {
+        class LocalDef
+        {
+            public const double DEFAULT_X = 0;
+            public const double DEFAULT_Y = 0;
+        }
         #region Id
         public static readonly DependencyProperty IdProperty = DependencyProperty.Register(
             "Id",
@@ -55,6 +60,31 @@ namespace SpriteLightRock.Sprites
             get { return (double)GetValue(YProperty); }
             set { SetValue(YProperty, value); }
         }
+
+        public static readonly DependencyProperty WidthProperty = DependencyProperty.Register(
+            "Width",
+            typeof(double),
+            typeof(Module),
+            new UIPropertyMetadata(null)
+        );
+        public double Width
+        {
+            get { return (double)GetValue(WidthProperty); }
+            set { SetValue(WidthProperty, value); }
+        }
+
+        public static readonly DependencyProperty HeightProperty = DependencyProperty.Register(
+            "Height",
+            typeof(double),
+            typeof(Module),
+            new UIPropertyMetadata(null)
+        );
+        public double Height
+        {
+            get { return (double)GetValue(HeightProperty); }
+            set { SetValue(HeightProperty, value); }
+        }
+
         public virtual int PreFixId
         {
             get { return 0; }
@@ -65,6 +95,10 @@ namespace SpriteLightRock.Sprites
             Id = id;
             X = x;
             Y = y;
+        }
+        public SpriteLowObject(int id)
+            :this(id,LocalDef.DEFAULT_X,LocalDef.DEFAULT_Y)
+        {
         }
     }
 }
