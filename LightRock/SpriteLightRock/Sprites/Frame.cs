@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SpriteLightRock.Sprites
 {
-    class Frame : SpriteHightObject
+    class Frame : ReferentSpriteObject
     {
         private class LocalDef
         {

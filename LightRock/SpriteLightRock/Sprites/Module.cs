@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Input;
 namespace SpriteLightRock.Sprites
 {
-    class Module : SpriteLowObject
+    class Module : SpriteObject
     {
         private class LocalDef
         {
