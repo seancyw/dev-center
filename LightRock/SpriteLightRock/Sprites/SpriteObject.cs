@@ -19,6 +19,8 @@ namespace SpriteLightRock.Sprites
         {
             public const double DEFAULT_X = 0;
             public const double DEFAULT_Y = 0;
+            public const double DEFAULT_W = 10;
+            public const double DEFAULT_H = 10;
         }
         #region Id
         public static readonly DependencyProperty IdProperty = DependencyProperty.Register(
@@ -70,7 +72,13 @@ namespace SpriteLightRock.Sprites
         public double Width
         {
             get { return (double)GetValue(WidthProperty); }
-            set { SetValue(WidthProperty, value); }
+            set
+            {
+                if (value > 0)
+                {
+                    SetValue(WidthProperty, value);
+                }
+            }
         }
 
         public static readonly DependencyProperty HeightProperty = DependencyProperty.Register(
@@ -82,7 +90,13 @@ namespace SpriteLightRock.Sprites
         public double Height
         {
             get { return (double)GetValue(HeightProperty); }
-            set { SetValue(HeightProperty, value); }
+            set 
+            {
+                if (value > 0)
+                {
+                    SetValue(HeightProperty, value);
+                }
+            }
         }
 
         public virtual int PreFixId
@@ -90,11 +104,17 @@ namespace SpriteLightRock.Sprites
             get { return 0; }
         }
 
-        public SpriteObject(int id, double x, double y)
+        public SpriteObject(int id, double x, double y,double width, double height)
         {
-            Id = id;
-            X = x;
-            Y = y;
+            Id          = id;
+            X           = x;
+            Y           = y;
+            Width       = width;
+            Height      = height;
+        }
+        public SpriteObject(int id, double x, double y)
+            :this(id,x,y, LocalDef.DEFAULT_W,LocalDef.DEFAULT_H)
+        {   
         }
         public SpriteObject(int id)
             :this(id,LocalDef.DEFAULT_X,LocalDef.DEFAULT_Y)

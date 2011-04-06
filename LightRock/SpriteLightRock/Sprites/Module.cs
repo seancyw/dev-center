@@ -23,10 +23,8 @@ namespace SpriteLightRock.Sprites
             }
         }
         public Module(int id, double x, double y, double w, double h)
-            :base(id,x,y)
-        {
-            Width       = w;
-            Height      = h;
+            :base(id,x,y, w,h)
+        {   
         }        
         public bool IsInside(Point p)
         {

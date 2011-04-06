@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Shapes;
+using System.Windows;
+using System.Windows.Input;
+
 
 namespace SpriteLightRock.Sprites
 {
@@ -21,12 +25,11 @@ namespace SpriteLightRock.Sprites
         private double      _scaleX;
         private double      _scaleY;
         private double      _angle;
-        private int         _referId;
+        private readonly object      _referenceObject;
 
-        public int ReferenceId
+        public object ReferenceObject
         {
-            get { return _referId; }
-            set { _referId = value; }
+            get { return _referenceObject; }
         }
         public double ScaleX
         {
@@ -64,14 +67,12 @@ namespace SpriteLightRock.Sprites
         }
 
         public ReferentSpriteObject(
-            int id,
-            int referenceId,
+            object referenceObject,
             double x,
             double y
         )
             :this(
-                id,
-                referenceId,
+                referenceObject,
                 x,
                 y,
                 LocalDef.DEFAULT_ANCHOR_X,
@@ -83,9 +84,8 @@ namespace SpriteLightRock.Sprites
         {
         }
 
-        public ReferentSpriteObject(
-            int id,
-            int referenceId,
+        public ReferentSpriteObject(            
+            object referenceObject,
             double x,
             double y,
             double anchorX,
@@ -95,12 +95,16 @@ namespace SpriteLightRock.Sprites
             double angle
         )           
         {
-            ReferenceId = referenceId;
+            _referenceObject = referenceObject;
             AnchorX = AnchorX;
             AnchorY = AnchorY;
             ScaleX = scaleX;
             ScaleY = scaleY;
             Angle = angle;
+        }
+        public virtual Rect GetBoundRect()
+        {
+            throw new NotImplementedException();
         }
     }
 }
