@@ -59,18 +59,57 @@ CQTTDemoView::~CQTTDemoView()
 void CQTTDemoView::OnDraw(CDC* pDC)
 {
 	{
+		CDC *mdc = new CDC;
+		//De lam cai gi vay troi?
+		mdc->CreateCompatibleDC(pDC);
+		CBitmap* m_bitmap = new CBitmap();
+		//Ham de load cai file den cai bitmap // Win32 API
+		m_bitmap->m_hObject=(HBITMAP)::LoadImage(
+			NULL,
+			"tamtit.bmp",
+			IMAGE_BITMAP,
+			520,
+			758,
+			LR_LOADFROMFILE);
+		//Phai select object thi no moi ve dc.
+		mdc->SelectObject(m_bitmap);
+		CRect rect;
+		//Lay client Rect
+		GetClientRect(&rect);
+		//BitBlt() // Khong hieu
+		//pDC->BitBlt(100,100,400,500,mdc,0,0,SRCCOPY);
+		float radians = 3.1416f*45/180;
+		float minx = 50;
+		float miny = 100;
+		float cosine = (float)cos(radians);
+		float sine = (float)sin(radians);
+		XFORM xform;
+		xform.eM11 = cosine;
+		xform.eM12 = -sine;
+		xform.eM21 = sine;
+		xform.eM22 = cosine;
+		xform.eDx = (float)-minx;
+		xform.eDy = (float)-miny;
+		SetWorldTransform(pDC->GetSafeHdc(),&xform);
+		pDC->BitBlt(0,0,400,500,mdc,100,100,SRCCOPY);		
+		mdc->DeleteDC();		
+		CBrush brush;
+		brush.CreatePatternBrush(m_bitmap);
+
 		// Block for Graphics
 		Graphics g(pDC->GetSafeHdc());
 		g.SetSmoothingMode(SmoothingModeHighQuality);
 		g.SetInterpolationMode(InterpolationModeHighQualityBicubic);
 		g.SetPixelOffsetMode(PixelOffsetModeHighQuality);
-
+		
 		for (int i = 0; i < 6; i++)
 		{
+			//g.RotateTransform(45);
 			g.FillPath(m_pBrushes[i], & m_Paths[i]);
 			g.DrawPath(m_pPens[i], & m_Paths[i]);
 		}
 	}
+	//Dung de paint may cai nut de co the xoay, resize v.v...
 	m_Tracker.Draw(pDC);
 }
 
@@ -382,8 +421,7 @@ void CQTTDemoView::MakeStarPath(GraphicsPath& path, int points, int innerRadius,
 
 void CQTTDemoView::MakeSmiley(GraphicsPath& path)
 {
-	path.Reset();
-
+	path.Reset();	
 	path.AddEllipse(200, 350, 400, 400);
 	Rect rcEye(330, 520, 10, 10);
 	path.AddEllipse(rcEye);
