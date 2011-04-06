@@ -1,0 +1,391 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\QTTDemo.ico"
+IDR_QTTDemoTYPE         ICON                    "res\\QTTDemoDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Reset",                      ID_FILE_NEW
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Options"
+    BEGIN
+        MENUITEM "&Rotate",                     ID_OPTIONS_ROTATE
+        MENUITEM "&Shear",                      ID_OPTIONS_SHEAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Allow Mirror",               ID_OPTIONS_ALLOWMIRROR
+        MENUITEM SEPARATOR
+        MENUITEM "Ce&nter",                     ID_OPTIONS_CENTER
+        MENUITEM "&Move Center",                ID_OPTIONS_MOVECENTER
+        MENUITEM "Re&verse Rotate Alt",         ID_OPTIONS_REVERSEROTATEALT
+        MENUITEM SEPARATOR
+        MENUITEM "Mar&k Rectangle Dotted",      ID_OPTIONS_MARKRECTANGLEDOTTED
+
+        MENUITEM "&Track Rectangle Dotted",     ID_OPTIONS_TRACKRECTANGLEDOTTED
+
+        MENUITEM "&Path Dotted",                ID_OPTIONS_PATHDOTTED
+        MENUITEM SEPARATOR
+        POPUP "&Colors"
+        BEGIN
+            MENUITEM "Mar&k Rectangle...",          ID_COLORS_MARKRECTANGLE
+            MENUITEM "&Track Rectangle...",         ID_COLORS_TRACKRECTANGLE
+            MENUITEM "&Path...",                    ID_COLORS_PATH
+            MENUITEM "&Handles...",                 ID_COLORS_HANDLES
+            MENUITEM "Ce&nter...",                  ID_COLORS_CENTER
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Si&zes...",                   ID_OPTIONS_SIZES
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About QTransformTracker...", ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 126
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "About QTTDemo"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,21,20
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,16,WS_GROUP
+    LTEXT           "QTTDemo 1.0",IDC_STATIC,43,7,119,8,SS_NOPREFIX
+    GROUPBOX        "",IDC_STATIC,43,28,165,63
+    LTEXT           "Demonstration of QTransformTracker MFC class\n\nClick on any object to move, scale, rotate, or shear it by dragging. Use Shift, Ctrl, Alt, and the space bar to explore the possibilities.",
+                    IDC_STATIC,49,39,153,49
+    LTEXT           "Copyright (C) Sjaak Priester, 2003\nwww.sjaakpriester.nl",
+                    IDC_STATIC,43,99,155,20
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,3,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "Cruquius Soft"
+            VALUE "FileDescription", "Demonstration of QTransformTracker MFC class"
+            VALUE "FileVersion", "1.0.3.1"
+            VALUE "InternalName", "QTTDemo.exe"
+            VALUE "LegalCopyright", "(c) 2003, Sjaak Priester, Amsterdam"
+            VALUE "OriginalFilename", "QTTDemo.exe"
+            VALUE "ProductName", "QTransformTracker"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 119
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// RT_MANIFEST
+//
+
+IDR_MANIFEST            RT_MANIFEST             "res\\QTTDemo.manifest"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_SHEAR_VERT          CURSOR                  "res\\shear_vert.cur"
+IDC_SHEAR_HOR           CURSOR                  "res\\shear_hor.cur"
+IDC_ROTATE              CURSOR                  "res\\rotate.cur"
+IDC_COPY4WAY            CURSOR                  "res\\copy4way.cur"
+IDC_BULLSEYE            CURSOR                  "res\\bullseye_xor.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "Demonstration of QTransformTracker\n\nQTTDemo\n\n\nQTTDemo.Document\nQTTDemo.Document"
+    ID_OPTIONS_ROTATE       "Toggle Rotation capability"
+    ID_OPTIONS_SHEAR        "Toggel Shearing capability"
+    ID_OPTIONS_ALLOWMIRROR  "If checked, object can be Mirrored by scaling"
+    ID_OPTIONS_CENTER       "Toggle Center"
+    ID_OPTIONS_MOVECENTER   "If checked, Center can be moved"
+    ID_OPTIONS_REVERSEROTATEALT 
+                            "If checked, default Rotation is around center; Alt-rotation is around opposite corner"
+    ID_OPTIONS_MARKRECTANGLEDOTTED "If checked, Mark Rectangle is dotted"
+    ID_OPTIONS_TRACKRECTANGLEDOTTED "If checked, Track Rectangle is dotted"
+    ID_OPTIONS_PATHDOTTED   "If checked, Path is dotted"
+    ID_COLORS_MARKRECTANGLE "Set the Color of the Mark Rectangle"
+    ID_COLORS_TRACKRECTANGLE "Set the Color of the Track Rectangle"
+    ID_COLORS_PATH          "Set the Color of the Path"
+    ID_COLORS_HANDLES       "Set the Color of the Handles"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "QTTDemo"
+    AFX_IDS_IDLEMESSAGE     "Click on any object to transform it"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEW             "Reset the original configuration"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "Display program information"
+    ID_APP_EXIT             "Quit QTTDemo"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_COLORS_CENTER        "Set the Color of the Center"
+    ID_OPTIONS_SIZES        "Set several sizes"
+    ID_INDICATOR_TRACKER    "9999.99 x 9999.99    "
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MESSAGES            "Drag an object to move it to another place"
+    IDS_STRING1001          "Hold Shift to move exactly in horziontal, vertical, or diagonal directions"
+    IDS_STRING1002          "Drag one of the handles to scale the object"
+    IDS_STRING1003          "Edge handles scale in one direction, corner handles scale to any size"
+    IDS_STRING1004          "Hold Shift to preserve the proportions while scaling"
+    IDS_STRING1005          "Hold Alt to scale and keep the center point fixed"
+    IDS_STRING1006          "The center point can be dragged too"
+    IDS_STRING1007          "Hold Ctrl and start dragging a corner handle to rotate the object"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING1008          "After rotation has started, you may release the Ctrl key"
+    IDS_STRING1009          "Hold Shift to restrict rotation to multiples of 15 degrees"
+    IDS_STRING1010          "Hold Alt to rotate around the opposite handle"
+    IDS_STRING1011          "Hold Ctrl and start dragging an edge handle to shear the object"
+    IDS_STRING1012          "Hold Shift to fix the size, while shearing in the other direction"
+    IDS_STRING1013          "Hold Alt to shear with respect to the center point"
+    IDS_STRING1014          "Hold the space bar to move the object while scaling, rotating, or shearing"
+    IDS_STRING1015          "Press Esc, or click the rioght mouse button, to cancel"
+    IDS_STRING1016          "Note the information on the status bar ==>"
+    IDS_STRING1017          "Click on any object to transform it"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Dutch (Netherlands) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NLD)
+#ifdef _WIN32
+LANGUAGE LANG_DUTCH, SUBLANG_DUTCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SIZES DIALOGEX 0, 0, 186, 76
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Sizes"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    RTEXT           "&Handle Size",IDC_STATIC,7,9,45,8
+    EDITTEXT        IDC_HANDLESIZE,57,7,32,14,ES_AUTOHSCROLL
+    CONTROL         "",IDCS_HANDLESIZE,"msctls_updown32",UDS_SETBUDDYINT | 
+                    UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,83,7,11,
+                    14
+    RTEXT           "&Inner Margin",IDC_STATIC,7,28,45,8
+    EDITTEXT        IDC_INNERMARGIN,57,26,32,14,ES_AUTOHSCROLL
+    CONTROL         "",IDCS_INNERMARGIN,"msctls_updown32",UDS_SETBUDDYINT | 
+                    UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,83,26,11,
+                    14
+    RTEXT           "&OuterMargin",IDC_STATIC,7,47,45,8
+    EDITTEXT        IDC_OUTERMARGIN,57,45,32,14,ES_AUTOHSCROLL
+    CONTROL         "",IDCS_OUTERMARGIN,"msctls_updown32",UDS_SETBUDDYINT | 
+                    UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,83,45,11,
+                    14
+    DEFPUSHBUTTON   "OK",IDOK,129,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,129,24,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_SIZES, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 68
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\QTTDemo.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Dutch (Netherlands) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\QTTDemo.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
