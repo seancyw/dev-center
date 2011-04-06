@@ -15,9 +15,9 @@ namespace SpriteLightRock.Sprites
     }
     class Sprite
     {
-        private ObservableCollection<Module> _listModules;        
-        private List<Frame>     _listFrames;
-        private List<AFrame>    _listAFrames;
+        private ObservableCollection<Module> _listModules;
+        private ObservableCollection<Frame> _listFrames;
+        private ObservableCollection<AFrame> _listAFrames;
         private string          _imagePath;
         private ViewState       _viewState;
         //@Reference: http://www.switchonthecode.com/tutorials/wpf-tutorial-using-the-listview-part-1

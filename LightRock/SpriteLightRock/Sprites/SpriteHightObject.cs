@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SpriteLightRock.Sprites
 {
-    class SpriteHightObject : SpriteLowObject
+    class SpriteHightObject
     {
         class LocalDef
         {
@@ -93,8 +93,7 @@ namespace SpriteLightRock.Sprites
             double scaleX,
             double scaleY,
             double angle
-        )
-            :base(id,x,y)
+        )           
         {
             ReferenceId = referenceId;
             AnchorX = AnchorX;

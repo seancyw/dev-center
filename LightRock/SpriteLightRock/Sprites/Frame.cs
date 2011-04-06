@@ -37,6 +37,10 @@ namespace SpriteLightRock.Sprites
             : base(id,referenceId,x,y)
         {
         }
+        public bool Add(Module module)
+        {
+            return false;
+        }
 
     }
 }
