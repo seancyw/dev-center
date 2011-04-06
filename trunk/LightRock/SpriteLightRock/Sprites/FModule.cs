@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SpriteLightRock.Sprites
 {
-    class FModule : SpriteHightObject
+    class FModule : ReferentSpriteObject
     {
         //No need to have Id => just Index
         private new int Id
