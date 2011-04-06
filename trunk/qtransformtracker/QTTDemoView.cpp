@@ -90,8 +90,9 @@ void CQTTDemoView::OnDraw(CDC* pDC)
 		xform.eM22 = cosine;
 		xform.eDx = (float)-minx;
 		xform.eDy = (float)-miny;
-		SetWorldTransform(pDC->GetSafeHdc(),&xform);
+		SetWorldTransform(pDC->GetSafeHdc(),&xform);		
 		pDC->BitBlt(0,0,400,500,mdc,100,100,SRCCOPY);		
+		pDC->TransparentBlt(100,100,400,500,mdc,0,0,400,500,RGB(144,3,225));
 		mdc->DeleteDC();		
 		CBrush brush;
 		brush.CreatePatternBrush(m_bitmap);
