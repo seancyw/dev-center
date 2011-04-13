@@ -6,6 +6,16 @@
 
 class CQTTDemoView : public CScrollView
 {
+public:
+	static const int PATH_MULTI_STAR	= 0;
+	static const int PATH_SMILE			= PATH_MULTI_STAR + 1;
+	static const int PATH_RECTANGLE		= PATH_SMILE + 1;
+	static const int PATH_TEXT			= PATH_RECTANGLE + 1;
+	static const int PATH_ELLIPSE		= PATH_TEXT + 1;
+	static const int PATH_STAR			= PATH_ELLIPSE + 1;
+	static const int PATH_IMAGE			= PATH_STAR + 1;
+	static const int PATH_COUNT			= 6;//7
+
 protected:
 	CQTTDemoView();
 	virtual ~CQTTDemoView();
@@ -34,9 +44,9 @@ protected:
 	QTransformTracker m_Tracker;
 
 	int m_iPath;
-	GraphicsPath m_Paths[6];
-	Brush * m_pBrushes[6];
-	Pen * m_pPens[6];
+	GraphicsPath m_Paths[PATH_COUNT];
+	Brush * m_pBrushes[PATH_COUNT];
+	Pen * m_pPens[PATH_COUNT];
 
 	DECLARE_MESSAGE_MAP()
 	DECLARE_DYNCREATE(CQTTDemoView)
