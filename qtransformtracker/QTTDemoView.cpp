@@ -229,7 +229,7 @@ void CQTTDemoView::OnLButtonDown(UINT nFlags, CPoint point)
 // Helper for OnLButtonDown
 int CQTTDemoView::HitTest(CPoint point)
 {
-	for (int i = 5; i >= 0; i--)
+	for (int i = PATH_COUNT - 1; i >= 0; i--)
 		if (m_Paths[i].IsVisible(point.x, point.y)) break;
 	return i;
 }
@@ -368,36 +368,36 @@ void CQTTDemoView::InitSillyObjects(void)
 	StringFormat sf;
 	Point p(200, 200);
 
-	MakeStarPath(m_Paths[0], 7, 40, 120);
+	MakeStarPath(m_Paths[PATH_MULTI_STAR], 7, 40, 120);
 	Matrix mat;
 	mat.Translate(700, 150);
-	m_Paths[0].Transform(& mat);
+	m_Paths[PATH_MULTI_STAR].Transform(& mat);
 
-	MakeSmiley(m_Paths[1]);
+	MakeSmiley(m_Paths[PATH_SMILE]);
 	mat.Reset();
 	mat.Translate(400, 300);
 	mat.Scale(0.2f, 0.2f);
 	mat.Rotate(- 15.0f);
-	m_Paths[1].Transform(& mat);
+	m_Paths[PATH_SMILE].Transform(& mat);
 
 	Rect rc2(120, 80, 160, 65);
-	m_Paths[2].Reset();
-	m_Paths[2].AddRectangle(rc2);
+	m_Paths[PATH_RECTANGLE].Reset();
+	m_Paths[PATH_RECTANGLE].AddRectangle(rc2);
 
-	m_Paths[3].Reset();
-	m_Paths[3].AddString(s.AllocSysString(), s.GetLength(), &ff, FontStyleBold, 100.0F, p, & sf);
+	m_Paths[PATH_TEXT].Reset();
+	m_Paths[PATH_TEXT].AddString(s.AllocSysString(), s.GetLength(), &ff, FontStyleBold, 100.0F, p, & sf);
 
 	Rect rc4(420, -240, 120, 265);
-	m_Paths[4].Reset();
-	m_Paths[4].AddEllipse(rc4);
+	m_Paths[PATH_ELLIPSE].Reset();
+	m_Paths[PATH_ELLIPSE].AddEllipse(rc4);
 	mat.Reset();
 	mat.Rotate(30.0f);
-	m_Paths[4].Transform(& mat);
+	m_Paths[PATH_ELLIPSE].Transform(& mat);
 
-	MakeStarPath(m_Paths[5], 5, 12, 60);
+	MakeStarPath(m_Paths[PATH_STAR], 5, 12, 60);
 	mat.Reset();
 	mat.Translate(224, 320);
-	m_Paths[5].Transform(& mat);
+	m_Paths[PATH_STAR].Transform(& mat);
 }
 
 void CQTTDemoView::MakeStarPath(GraphicsPath& path, int points, int innerRadius, int outerRadius)
