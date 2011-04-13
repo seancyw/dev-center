@@ -7,14 +7,14 @@
 class CQTTDemoView : public CScrollView
 {
 public:
-	static const int PATH_MULTI_STAR	= 0;
-	static const int PATH_SMILE			= PATH_MULTI_STAR + 1;
-	static const int PATH_RECTANGLE		= PATH_SMILE + 1;
-	static const int PATH_TEXT			= PATH_RECTANGLE + 1;
-	static const int PATH_ELLIPSE		= PATH_TEXT + 1;
-	static const int PATH_STAR			= PATH_ELLIPSE + 1;
-	static const int PATH_IMAGE			= PATH_STAR + 1;
-	static const int PATH_COUNT			= 6;//7
+	static const int PATH_MULTI_STAR	= 0;//0
+	static const int PATH_SMILE			= PATH_MULTI_STAR + 1;//1
+	static const int PATH_RECTANGLE		= PATH_SMILE + 1;//2
+	static const int PATH_TEXT			= PATH_RECTANGLE + 1;//3
+	static const int PATH_ELLIPSE		= PATH_TEXT + 1;//4
+	static const int PATH_STAR			= PATH_ELLIPSE + 1;//5
+	static const int PATH_IMAGE			= PATH_STAR + 1;//6
+	static const int PATH_COUNT			= 7;//7
 
 protected:
 	CQTTDemoView();
@@ -39,6 +39,9 @@ protected:
 	void InitSillyObjects(void);
 	void MakeStarPath(GraphicsPath& path, int points, int innerRadius, int outerRadius);
 	void MakeSmiley(GraphicsPath& path);
+	//Add vao mot cai image path, co the cach suy nghi nay khong dung
+	//Cai nay co the lay ra tu cai module.
+	void MakeImagePath(GraphicsPath& path);
 
 	// Our very versatile transformation tracker class:
 	QTransformTracker m_Tracker;
