@@ -59,6 +59,7 @@ CQTTDemoView::~CQTTDemoView()
 void CQTTDemoView::OnDraw(CDC* pDC)
 {
 	{
+		/*
 		CDC *mdc = new CDC;
 		//De lam cai gi vay troi?
 		mdc->CreateCompatibleDC(pDC);
@@ -78,9 +79,9 @@ void CQTTDemoView::OnDraw(CDC* pDC)
 		GetClientRect(&rect);
 		//BitBlt() // Khong hieu
 		//pDC->BitBlt(100,100,400,500,mdc,0,0,SRCCOPY);
-		float radians = 3.1416f*45/180;
-		float minx = 50;
-		float miny = 100;
+		float radians = 3.1416f*0/180;
+		float minx = 0;
+		float miny = 0;
 		float cosine = (float)cos(radians);
 		float sine = (float)sin(radians);
 		XFORM xform;
@@ -90,13 +91,14 @@ void CQTTDemoView::OnDraw(CDC* pDC)
 		xform.eM22 = cosine;
 		xform.eDx = (float)-minx;
 		xform.eDy = (float)-miny;
-		SetWorldTransform(pDC->GetSafeHdc(),&xform);		
 		pDC->BitBlt(0,0,400,500,mdc,100,100,SRCCOPY);		
+		SetGraphicsMode(pDC->m_hDC, GM_ADVANCED);
+		SetWorldTransform(pDC->GetSafeHdc(),&xform);
 		pDC->TransparentBlt(100,100,400,500,mdc,0,0,400,500,RGB(144,3,225));
 		mdc->DeleteDC();		
 		CBrush brush;
 		brush.CreatePatternBrush(m_bitmap);
-
+		*/
 		// Block for Graphics
 		Graphics g(pDC->GetSafeHdc());
 		g.SetSmoothingMode(SmoothingModeHighQuality);
@@ -108,6 +110,7 @@ void CQTTDemoView::OnDraw(CDC* pDC)
 			//g.RotateTransform(45);
 			g.FillPath(m_pBrushes[i], & m_Paths[i]);
 			g.DrawPath(m_pPens[i], & m_Paths[i]);
+			//g.GetTransform()
 		}
 	}
 	//Dung de paint may cai nut de co the xoay, resize v.v...
@@ -198,7 +201,7 @@ void CQTTDemoView::OnLButtonDown(UINT nFlags, CPoint point)
 			m_Paths[m_iPath].GetBounds(& rcAfter, NULL, m_pPens[m_iPath]);
 
 			// Determine which part of the screen is changed
-			rcChanged.Union(rcChanged, rcBefore, rcAfter);
+			rcChanged.Union(rcChanged, rcBefore, rcAfter);			
 
 			// Convert to CRect
 			CRect rcInval(rcChanged.GetLeft(), rcChanged.GetTop(), rcChanged.GetRight(), rcChanged.GetBottom());
