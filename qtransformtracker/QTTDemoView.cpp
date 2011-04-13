@@ -100,15 +100,39 @@ void CQTTDemoView::OnDraw(CDC* pDC)
 		brush.CreatePatternBrush(m_bitmap);
 		*/
 		// Block for Graphics
+		Bitmap* originalBitmap = new Bitmap(L"gameloft_logo.png");
 		Graphics g(pDC->GetSafeHdc());
 		g.SetSmoothingMode(SmoothingModeHighQuality);
 		g.SetInterpolationMode(InterpolationModeHighQualityBicubic);
 		g.SetPixelOffsetMode(PixelOffsetModeHighQuality);
 		
-		for (int i = 0; i < 6; i++)
+		for (int i = 0; i < PATH_COUNT; i++)
 		{
 			//g.RotateTransform(45);
-			g.FillPath(m_pBrushes[i], & m_Paths[i]);
+			
+			if( i == PATH_IMAGE)
+			{
+				REAL left		= 34;
+				REAL top		= 59;
+				REAL width		= 106;
+				REAL height		= 76;
+				RectF sourceRect(
+					left,
+					top, 
+					width, 
+					height
+				);				
+				RectF sourceBound;
+				m_Paths[i].GetBounds(&sourceBound);
+				Bitmap* secondBitmap = originalBitmap->Clone(sourceRect, PixelFormatDontCare);
+				//m_pBrushes[i] = new Brush();
+				//m_Tracker.Load(m_Paths[i],true);
+				//g.SetTransform(m_Tracker.GetTransform());				
+				g.DrawImage(secondBitmap,sourceBound.GetLeft(),sourceBound.GetTop(),sourceBound.Width, sourceBound.Height);
+			}
+			else{
+				g.FillPath(m_pBrushes[i], & m_Paths[i]);
+			}
 			g.DrawPath(m_pPens[i], & m_Paths[i]);
 			//g.GetTransform()
 		}
@@ -342,20 +366,22 @@ void CQTTDemoView::OnOptionsSizes()
 
 void CQTTDemoView::InitPensAndBrushes(void)
 {
-	m_pPens[0] = new Pen((ARGB) Color::Gold, 3.0f);
-	m_pPens[1] = new Pen((ARGB) Color::DarkGoldenrod, 2.0f);
-	m_pPens[2] = new Pen((ARGB) Color::DarkGreen, 1.5f);
-	m_pPens[2]->SetDashStyle(DashStyleDot);
-	m_pPens[3] = new Pen((ARGB) Color::CadetBlue, 2.5f);
-	m_pPens[4] = new Pen((ARGB) Color::DeepSkyBlue, 1.0f);
-	m_pPens[5] = new Pen((ARGB) Color::Gainsboro, 1.0f);
+	m_pPens[PATH_MULTI_STAR]		= new Pen((ARGB) Color::Gold, 3.0f);
+	m_pPens[PATH_SMILE]				= new Pen((ARGB) Color::DarkGoldenrod, 2.0f);
+	m_pPens[PATH_RECTANGLE]			= new Pen((ARGB) Color::DarkGreen, 1.5f);
+	m_pPens[PATH_RECTANGLE]->SetDashStyle(DashStyleDot);
+	m_pPens[PATH_TEXT]				= new Pen((ARGB) Color::CadetBlue, 2.5f);
+	m_pPens[PATH_ELLIPSE]			= new Pen((ARGB) Color::DeepSkyBlue, 1.0f);
+	m_pPens[PATH_STAR]				= new Pen((ARGB) Color::Gainsboro, 1.0f);
+	m_pPens[PATH_IMAGE]				= new Pen((ARGB) Color::Blue,3.0f);
 
-	m_pBrushes[0] = new SolidBrush((ARGB) Color::SkyBlue);
-	m_pBrushes[1] = new SolidBrush((ARGB) Color::Yellow);
-	m_pBrushes[2] = new SolidBrush(Color(180, 0, 190, 120));
-	m_pBrushes[3] = new SolidBrush(Color(50, 12, 80, 80));
-	m_pBrushes[4] = new SolidBrush(Color(40, 0, 180, 180));
-	m_pBrushes[5] = new SolidBrush((ARGB) Color::Gold);
+	m_pBrushes[PATH_MULTI_STAR]		= new SolidBrush((ARGB) Color::SkyBlue);
+	m_pBrushes[PATH_SMILE]			= new SolidBrush((ARGB) Color::Yellow);
+	m_pBrushes[PATH_RECTANGLE]		= new SolidBrush(Color(180, 0, 190, 120));
+	m_pBrushes[PATH_TEXT]			= new SolidBrush(Color(50, 12, 80, 80));
+	m_pBrushes[PATH_ELLIPSE]		= new SolidBrush(Color(40, 0, 180, 180));
+	m_pBrushes[PATH_STAR]			= new SolidBrush((ARGB) Color::Gold);
+	m_pBrushes[PATH_IMAGE]			= new SolidBrush((ARGB) Color::Blue);
 }
 
 // Quick & dirty functions to draw the objects
@@ -398,6 +424,8 @@ void CQTTDemoView::InitSillyObjects(void)
 	mat.Reset();
 	mat.Translate(224, 320);
 	m_Paths[PATH_STAR].Transform(& mat);
+
+	MakeImagePath(m_Paths[PATH_IMAGE]);
 }
 
 void CQTTDemoView::MakeStarPath(GraphicsPath& path, int points, int innerRadius, int outerRadius)
@@ -434,4 +462,26 @@ void CQTTDemoView::MakeSmiley(GraphicsPath& path)
 	Rect rcMouth(370, 590, 60, 60);
 	path.AddArc(rcMouth, 0.0f, 180.0f);
 	path.CloseFigure();
+}
+void CQTTDemoView::MakeImagePath(GraphicsPath& path)
+{
+	path.Reset();
+	REAL left		= 34;
+	REAL top		= 59;
+	REAL width		= 106;
+	REAL height		= 76;
+	PointF *pnt = new PointF[4];
+	//
+	pnt[0].X = left;
+	pnt[0].Y = top;
+	//
+	pnt[1].X = left + width;
+	pnt[1].Y = top;
+	//
+	pnt[2].X = left + width;
+	pnt[2].Y = top + height;
+	//
+	pnt[3].X = left;
+	pnt[3].Y = top + height;
+	path.AddLines(pnt,4);	
 }
