@@ -36,16 +36,5 @@ namespace SpriteLightRock.Sprites
             FModules.Add(fModule);
             return true;
         }
-        private double _getWidth()
-        {
-            int n = FModules.Count;
-            double minX = Double.MaxValue;
-            double maxX = Double.MinValue;
-            for (int i = 0; i < n; i++)
-            {
-                
-            }
-            return 0;
-        }
     }
 }

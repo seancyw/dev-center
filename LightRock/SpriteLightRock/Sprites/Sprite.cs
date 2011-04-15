@@ -15,10 +15,10 @@ namespace SpriteLightRock.Sprites
     }
     class Sprite
     {
-        private ObservableCollection<Module> _listModules;
-        private ObservableCollection<Frame> _listFrames;
-        private ObservableCollection<AFrame> _listAFrames;
-        private string          _imagePath;
+        private ObservableCollection<Module>        _listModules;
+        private ObservableCollection<Frame>         _listFrames;
+        private ObservableCollection<AFrame>        _listAFrames;
+        private string          _imagePath;        
         private ViewState       _viewState;
         //@Reference: http://www.switchonthecode.com/tutorials/wpf-tutorial-using-the-listview-part-1
         //&http://msdn.microsoft.com/en-us/library/ms752347%28v=VS.85%29.aspx
@@ -57,6 +57,7 @@ namespace SpriteLightRock.Sprites
             Modules = new ObservableCollection<Module>();
             View        = ViewState.Module;
         }
+        public void Load
         public Module GetModule(int moduleId)
         {
             for (int i = 0; i < Modules.Count; i++)
