@@ -121,19 +121,24 @@ void CQTTDemoView::OnDraw(CDC* pDC)
 					top, 
 					width, 
 					height
-				);				
+				);
 				RectF sourceBound;
-				m_Paths[i].GetBounds(&sourceBound);
+				m_Paths[i].GetBounds(&sourceBound);				
 				Bitmap* secondBitmap = originalBitmap->Clone(sourceRect, PixelFormatDontCare);
-				//m_pBrushes[i] = new Brush();
-				//m_Tracker.Load(m_Paths[i],true);
-				//g.SetTransform(m_Tracker.GetTransform());				
-				g.DrawImage(secondBitmap,sourceBound.GetLeft(),sourceBound.GetTop(),sourceBound.Width, sourceBound.Height);
+				m_Matrixs[i];
+				g.SetTransform(m_Matrixs[i]);
+				g.DrawImage(secondBitmap,0,0);
+				Matrix* m = m_Matrixs[i]->Clone();
+				m->Reset();
+				g.SetTransform(m);
+				g.DrawPath(m_pPens[i], & m_Paths[i]);
+				delete m;				
 			}
 			else{
 				g.FillPath(m_pBrushes[i], & m_Paths[i]);
+				g.DrawPath(m_pPens[i], & m_Paths[i]);
 			}
-			g.DrawPath(m_pPens[i], & m_Paths[i]);
+			
 			//g.GetTransform()
 		}
 	}
@@ -141,13 +146,18 @@ void CQTTDemoView::OnDraw(CDC* pDC)
 	m_Tracker.Draw(pDC);
 }
 
+//Mot dong cac ham trong nay that su khong hieu cai he dieu hanh Windows lam gi voi no
 void CQTTDemoView::OnPrepareDC(CDC* pDC, CPrintInfo* pInfo)
 {
+	//@tpphu's note: Called by framework before OnDraw is called or OnPrint is called.
+	//Cai nay duoc giai thich ra nhieu trong MSDN, nhung co ban la khong hieu ly do gi
 	CScrollView::OnPrepareDC(pDC, pInfo);
 
 	CSize sz = pDC->GetWindowExt();
 	sz = pDC->GetViewportExt();
-	if (pDC->GetMapMode() != MM_TEXT) pDC->SetWindowOrg(0, 500);
+	if (pDC->GetMapMode() != MM_TEXT){
+		pDC->SetWindowOrg(0, 500);
+	}
 }
 
 void CQTTDemoView::OnInitialUpdate()
@@ -211,6 +221,7 @@ void CQTTDemoView::OnLButtonDown(UINT nFlags, CPoint point)
 			Matrix * pMat = m_Tracker.GetTransform();
 
 			// Apply the transformation to the object
+			m_Matrixs[m_iPath]->Multiply(pMat,MatrixOrderAppend);
 			m_Paths[m_iPath].Transform(pMat);
 
 			// Not needed anymore
@@ -232,7 +243,8 @@ void CQTTDemoView::OnLButtonDown(UINT nFlags, CPoint point)
 
 			// Invalidate the screen. In a real application, this would be done in a
 			// far more refined way.
-			InvalidateRect(rcInval);
+			//InvalidateRect(rcInval);
+			Invalidate(true);
 			return;
 		}
 		else if (r == QTracker::TrackCancelled) return;
@@ -373,7 +385,7 @@ void CQTTDemoView::InitPensAndBrushes(void)
 	m_pPens[PATH_TEXT]				= new Pen((ARGB) Color::CadetBlue, 2.5f);
 	m_pPens[PATH_ELLIPSE]			= new Pen((ARGB) Color::DeepSkyBlue, 1.0f);
 	m_pPens[PATH_STAR]				= new Pen((ARGB) Color::Gainsboro, 1.0f);
-	m_pPens[PATH_IMAGE]				= new Pen((ARGB) Color::Blue,3.0f);
+	m_pPens[PATH_IMAGE]				= new Pen((ARGB) Color::Red,1.0f);
 
 	m_pBrushes[PATH_MULTI_STAR]		= new SolidBrush((ARGB) Color::SkyBlue);
 	m_pBrushes[PATH_SMILE]			= new SolidBrush((ARGB) Color::Yellow);
@@ -395,37 +407,53 @@ void CQTTDemoView::InitSillyObjects(void)
 	Point p(200, 200);
 
 	MakeStarPath(m_Paths[PATH_MULTI_STAR], 7, 40, 120);
-	Matrix mat;
-	mat.Translate(700, 150);
-	m_Paths[PATH_MULTI_STAR].Transform(& mat);
+	//Matrix mat;
+	m_Matrixs[PATH_MULTI_STAR] = new Matrix();
+	//mat.Translate(700, 150);
+	m_Matrixs[PATH_MULTI_STAR]->Translate(700, 150);
+	m_Paths[PATH_MULTI_STAR].Transform(m_Matrixs[PATH_MULTI_STAR]);
 
-	MakeSmiley(m_Paths[PATH_SMILE]);
-	mat.Reset();
-	mat.Translate(400, 300);
-	mat.Scale(0.2f, 0.2f);
-	mat.Rotate(- 15.0f);
-	m_Paths[PATH_SMILE].Transform(& mat);
+	MakeSmiley(m_Paths[PATH_SMILE]);	
+	//mat.Reset();
+	m_Matrixs[PATH_SMILE] = new Matrix();
+	//mat.Translate(400, 300);
+	m_Matrixs[PATH_SMILE]->Translate(400, 300);
+	//mat.Scale(0.2f, 0.2f);
+	m_Matrixs[PATH_SMILE]->Scale(0.2f, 0.2f);
+	//mat.Rotate(- 15.0f);
+	m_Matrixs[PATH_SMILE]->Rotate(- 15.0f);
+	m_Paths[PATH_SMILE].Transform(m_Matrixs[PATH_SMILE]);
 
 	Rect rc2(120, 80, 160, 65);
+	m_Matrixs[PATH_RECTANGLE] = new Matrix();
 	m_Paths[PATH_RECTANGLE].Reset();
 	m_Paths[PATH_RECTANGLE].AddRectangle(rc2);
 
+	m_Matrixs[PATH_TEXT] = new Matrix();
 	m_Paths[PATH_TEXT].Reset();
 	m_Paths[PATH_TEXT].AddString(s.AllocSysString(), s.GetLength(), &ff, FontStyleBold, 100.0F, p, & sf);
 
-	Rect rc4(420, -240, 120, 265);
-	m_Paths[PATH_ELLIPSE].Reset();
-	m_Paths[PATH_ELLIPSE].AddEllipse(rc4);
-	mat.Reset();
-	mat.Rotate(30.0f);
-	m_Paths[PATH_ELLIPSE].Transform(& mat);
+	Rect rc4(420, -240, 120, 265);	
+	m_Paths[PATH_ELLIPSE].Reset();	
+	m_Paths[PATH_ELLIPSE].AddEllipse(rc4);	
+	//mat.Reset();
+	m_Matrixs[PATH_ELLIPSE] = new Matrix();
+	//mat.Rotate(30.0f);
+	m_Matrixs[PATH_ELLIPSE]->Rotate(30.0f);
+	m_Paths[PATH_ELLIPSE].Transform(m_Matrixs[PATH_ELLIPSE]);
 
 	MakeStarPath(m_Paths[PATH_STAR], 5, 12, 60);
-	mat.Reset();
-	mat.Translate(224, 320);
-	m_Paths[PATH_STAR].Transform(& mat);
+	//mat.Reset();
+	m_Matrixs[PATH_STAR] = new Matrix();
+	//mat.Translate(224, 320);
+	m_Matrixs[PATH_STAR]->Translate(224, 320);
+	m_Paths[PATH_STAR].Transform(m_Matrixs[PATH_STAR]);
 
 	MakeImagePath(m_Paths[PATH_IMAGE]);
+	m_Matrixs[PATH_IMAGE] = new Matrix();	
+	m_Matrixs[PATH_IMAGE]->Translate(0,0);
+	//m_Matrixs[PATH_IMAGE]->Translate(106/2,76/2);
+	//m_Matrixs[PATH_IMAGE]->Translate(34,59);
 }
 
 void CQTTDemoView::MakeStarPath(GraphicsPath& path, int points, int innerRadius, int outerRadius)
@@ -466,10 +494,10 @@ void CQTTDemoView::MakeSmiley(GraphicsPath& path)
 void CQTTDemoView::MakeImagePath(GraphicsPath& path)
 {
 	path.Reset();
-	REAL left		= 34;
-	REAL top		= 59;
-	REAL width		= 106;
-	REAL height		= 76;
+	REAL left		= 0;
+	REAL top		= 0;
+	REAL width		= 108;
+	REAL height		= 78;
 	PointF *pnt = new PointF[4];
 	//
 	pnt[0].X = left;
@@ -483,5 +511,5 @@ void CQTTDemoView::MakeImagePath(GraphicsPath& path)
 	//
 	pnt[3].X = left;
 	pnt[3].Y = top + height;
-	path.AddLines(pnt,4);	
+	path.AddLines(pnt,4);
 }

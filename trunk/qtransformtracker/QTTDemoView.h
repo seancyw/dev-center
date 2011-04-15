@@ -47,9 +47,10 @@ protected:
 	QTransformTracker m_Tracker;
 
 	int m_iPath;
-	GraphicsPath m_Paths[PATH_COUNT];
-	Brush * m_pBrushes[PATH_COUNT];
-	Pen * m_pPens[PATH_COUNT];
+	GraphicsPath	m_Paths[PATH_COUNT];
+	Brush*			m_pBrushes[PATH_COUNT];
+	Pen*			m_pPens[PATH_COUNT];
+	Matrix*			m_Matrixs[PATH_COUNT];
 
 	DECLARE_MESSAGE_MAP()
 	DECLARE_DYNCREATE(CQTTDemoView)

@@ -20,12 +20,12 @@ class QTracker
 public:
 	enum TrackResult
 	{
-		TrackFailed = -2,
-		TrackCancelled = -1,
-		TrackContinue = 0,
-		TrackSucceeded = 1,
-		TrackCopy = 2,
-		TrackNoMove = 3
+		TrackFailed			= -2,
+		TrackCancelled		= -1,
+		TrackContinue		= 0,
+		TrackSucceeded		= 1,
+		TrackCopy			= 2,
+		TrackNoMove			= 3
 	};
 // Construction
 	QTracker(CWnd * pWnd);		// pWnd points to the associated window.
@@ -63,13 +63,13 @@ public:
 protected:
 	enum UpdateMode
 	{
-		UpdateMouseFlags = 0x007f, // MK_LBUTTON... etc.
-		UpdateRemove = 0,
-		UpdateDraw = 0x0400,
-		UpdateFirst = 0x0800,
-		UpdateEnter = 0x1000,
-		UpdateLeave = 0x2000,
-		UpdateLast = 0x4000
+		UpdateMouseFlags		= 0x007f, // MK_LBUTTON... etc.
+		UpdateRemove			= 0,
+		UpdateDraw				= 0x0400,
+		UpdateFirst				= 0x0800,
+		UpdateEnter				= 0x1000,
+		UpdateLeave				= 0x2000,
+		UpdateLast				= 0x4000
 	};
 
 // Overrideables
