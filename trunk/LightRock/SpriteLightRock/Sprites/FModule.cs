@@ -18,20 +18,5 @@ namespace SpriteLightRock.Sprites
             : base(referenceObject, x, y)
         {
         }        
-        public Matrix GetTransformMatrix()
-        {
-            Matrix matrix = new Matrix();
-            matrix.Scale(ScaleX, ScaleY);
-            matrix.Rotate(Angle);
-            return matrix;
-        }
-        public Rect GetRectBound()
-        {
-            Module module = ReferenceObject as Module;
-            
-            Rect rect = new Rect(0, 0, module.Width, module.Height);
-            rect.Transform(GetTransformMatrix());
-            return rect;
-        }
     }
 }
