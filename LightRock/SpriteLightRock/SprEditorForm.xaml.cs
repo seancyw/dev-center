@@ -24,7 +24,8 @@ namespace SpriteLightRock
         public SprEditorForm()
         {
             InitializeComponent();            
-            sprite.SetImage(@"E:\image\anhvui_chatvoihang.jpg");
+            sprite.ImageFile = "test.png";
+            sprite.LoadImage();
             for(int i = 0; i < 10; i++)
             {
                 sprite.Modules.Add(new Module(i+1,1,2,3,4));

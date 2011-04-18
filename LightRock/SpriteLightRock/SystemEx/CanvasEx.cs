@@ -14,9 +14,9 @@ namespace SpriteLightRock.SystemEx
     using Sprites;
     class CanvasEx : Canvas
     {
-        private static Sprite           _currentSprite;
-        private static ImageSource      _sprImage;
+        private static Sprite           _currentSprite;        
         private Point _currentPoint;
+        
         public Sprite CurrentSprite
         {
             get
@@ -29,17 +29,9 @@ namespace SpriteLightRock.SystemEx
             _currentSprite = sprite;
         }
         
-        public ImageSource SpriteImage { 
-            get {
-                if (_sprImage == null)
-                {
-                    if (CurrentSprite == null)
-                        return null;
-                    ImageSourceConverter imgConv = new ImageSourceConverter();
-                    _sprImage = (ImageSource)imgConv.ConvertFromString(CurrentSprite.ImagePath);
-                }
-                return _sprImage;
-            } 
+        public CanvasEx()
+        	:base()
+        {
         }
         public bool IsDrag
         {
@@ -67,25 +59,11 @@ namespace SpriteLightRock.SystemEx
             base.OnRender(dc);
             if (CurrentSprite == null)
                 return;
-            if (SpriteImage != null)
-            {
-                dc.DrawImage(SpriteImage, new Rect(0, 0, SpriteImage.Width, SpriteImage.Height));
-            }
-            Pen p = new Pen(Brushes.Green,1);
-            if (IsDrag)
-            {
-                dc.DrawRectangle(Brushes.Transparent, p, new Rect(PointFressed, PointCurrent));
-            }
-            p = new Pen(Brushes.Red, 1);
-            int moduleActiveId = CurrentSprite.GetActiveModuleId(PointCurrent);
-            if (moduleActiveId != -1)
-            {
-                Module m = CurrentSprite.GetModule(moduleActiveId);
-                dc.DrawRectangle(Brushes.Transparent, p, m.GetBoundRect());
-            }
-#if DEBUG
-            Console.Write(String.Format("{0} {1}", PointFressed.X, PointFressed.Y));            
-#endif
+            Transform t = Transform.Identity;    
+            dc.PushTransform(new RotateTransform(45,Width/2,Height/2));
+            dc.PushTransform(new ScaleTransform(0.25f,0.25f));
+            dc.PushTransform(new TranslateTransform(200,300));
+            dc.DrawImage(CurrentSprite.Bitmap, new Rect(30,20,CurrentSprite.Bitmap.Width,CurrentSprite.Bitmap.Height));
         }
         protected override void OnMouseDown(MouseButtonEventArgs e)
         {
