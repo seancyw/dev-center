@@ -1,7 +1,5 @@
 
 import java.io.*;
-import java.util.Enumeration;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
@@ -12,23 +10,27 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Hashtable;
 
-class Resource implements Comparator {
+class Resource implements Comparator
+{
 
     protected String path;
     protected String id;
     protected int index;
 
-    public Resource() {
+    public Resource()
+    {
     }
 
-    public Resource(String path, String id, int index) {
+    public Resource(String path, String id, int index)
+    {
         this.path = path;
         this.id = id;
         this.index = index;
     }
 
     @Override
-    public int compare(Object o1, Object o2) {
+    public int compare(Object o1, Object o2)
+    {
         if (((Resource) o1).index > ((Resource) o2).index) {
             return (1);
         } else if (((Resource) o1).index < ((Resource) o2).index) {
@@ -39,18 +41,21 @@ class Resource implements Comparator {
     }
 }
 
-public class SpriteListGen {
+public class SpriteListGen
+{
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         String cmd = "-core e:\\__Projects\\CowboysAndAliens\\W810i\\data\\triplet\\data.core -list test.list -tabname Sprites_In_Game";
         args = cmd.split(" ");
         try {
             ArrayList listCoreFiles = new ArrayList();
             String coreFile = null;
             String listFile = null;
-            String tabName = null;            
+            String tabName = null;
 
-            for (int i = 0; i < args.length; i++) {
+            for (int i = 0; i < args.length; i++)
+            {
                 if ((args[i].compareToIgnoreCase("-core") == 0) && (i + 1 < args.length)) {
                     listCoreFiles.add(args[i + 1]);
                     System.out.println("-core " + args[i + 1]);
@@ -68,7 +73,8 @@ public class SpriteListGen {
             DocumentBuilder builder;
             builder = factory.newDocumentBuilder();
             Document document;
-            while (true) {
+            while (true)
+            {
                 int lastIndex = listCoreFiles.size() - 1;
                 if (lastIndex < 0) {
                     break;
@@ -87,14 +93,17 @@ public class SpriteListGen {
                 listCoreFiles.add(currentPath + "\\" + overrideFile);
             }
 
-            for (int k = listCoreFiles.size() - 1; k >= 0; --k) {
+            for (int k = listCoreFiles.size() - 1; k >= 0; --k)
+            {
                 document = builder.parse((String) listCoreFiles.get(k));
                 Element coreDoc = document.getDocumentElement();
                 NodeList resources = coreDoc.getElementsByTagName("Resources");
                 NodeList typesList = ((Element) resources.item(0)).getElementsByTagName("Type");
-                for (int i = 0; i < typesList.getLength(); i++) {
+                for (int i = 0; i < typesList.getLength(); i++)
+                {
                     Element resType = (Element) typesList.item(i);
-                    if (resType.getAttribute("id").equalsIgnoreCase(tabName)) {
+                    if (resType.getAttribute("id").equalsIgnoreCase(tabName))
+                    {
                         NodeList list = ((Element) resType.getElementsByTagName("List").item(0)).getElementsByTagName("items");
                         NodeList items = ((Element) list.item(0)).getElementsByTagName("item");
                         for (int j = 0; j < items.getLength(); j++) {
@@ -114,7 +123,8 @@ public class SpriteListGen {
                             String uid = spriteItem.getAttribute("uid");
                             String ignore = spriteItem.getAttribute("ignore");
                             Resource currentResource = resourcesList.get(uid);
-                            if (currentResource != null) {
+                            if (currentResource != null)
+                            {
                                 if (ignore.equalsIgnoreCase("1")) {
                                     resourcesList.remove(uid);
                                 } else {
@@ -125,7 +135,9 @@ public class SpriteListGen {
                                         currentResource.index = index;
                                     }
                                 }
-                            } else {
+                            }
+                            else
+                            {
                                 if (index != -1) {
                                     resourcesList.put(uid, new Resource(path, id, index));
                                 }
@@ -142,14 +154,16 @@ public class SpriteListGen {
             // Generate and save list
             String spriteListString = "";
             Resource rc = new Resource();
-            Object[] resource = resourcesList.values().toArray();            
+            Object[] resource = resourcesList.values().toArray();
             Arrays.sort(resource, (Comparator) rc);
-            for (int i = 0; i < resource.length; ++i) {
+            for (int i = 0; i < resource.length; ++i)
+            {
                 Resource r = (Resource) resource[i];
                 spriteListString += "\"" + r.index + "\" = \"" + r.path + "\"\r\n";
             }
 
-            if (listFile != null) {
+            if (listFile != null)
+            {
                 FileWriter writer = new FileWriter(listFile);
                 writer = new FileWriter(listFile);
                 writer.write(spriteListString);
