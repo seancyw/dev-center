@@ -1,6 +1,5 @@
 
 import java.io.*;
-import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -22,11 +21,13 @@ class Resource {
 public class SpriteListGen {
 
     public static void main(String[] args) {
+        String cmd = "-core e:\\__Projects\\CowboysAndAliens\\W810i\\data\\triplet\\data.core";
+        args = cmd.split(" ");
         try {
             String coreFile = null;
             String listFile = null;
             String tabName = null;
-
+                
             for (int i = 0; i < args.length; i++) {
                 if ((args[i].compareToIgnoreCase("-core") == 0) && (i + 1 < args.length)) {
                     coreFile = args[i + 1];
@@ -40,15 +41,23 @@ public class SpriteListGen {
                 }
             }
 
-            Resource[] resourcesList = null;
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder;
-            builder = factory.newDocumentBuilder();
-            Document document = builder.parse(coreFile);
-            Element coreDoc = document.getDocumentElement();
-            NodeList resources = coreDoc.getElementsByTagName("Resources");
-            NodeList typesList = ((Element) resources.item(0)).getElementsByTagName("Type");
-
+            Resource[]              resourcesList           = null;
+            DocumentBuilderFactory  factory                 = DocumentBuilderFactory.newInstance();
+            DocumentBuilder         builder;
+            builder                                         = factory.newDocumentBuilder();
+            Document    document                            = builder.parse(coreFile);
+            Element     coreDoc                             = document.getDocumentElement();
+            NodeList    resources                           = coreDoc.getElementsByTagName("Resources");
+            NodeList    typesList                           = ((Element) resources.item(0)).getElementsByTagName("Type");
+            
+            //Get All Override
+            NodeList    overrideDoc                         = coreDoc.getElementsByTagName("Override");
+            String      strOverrideFile                     = ((Element)((Element)overrideDoc.item(0)).getElementsByTagName("file").item(0)).getAttribute("path");
+            File        file                                = new File(coreFile);
+            String      path1                                = file.getParent();
+            File        file2                               = new File(path1+strOverrideFile);
+            
+            
             //-----------------
             for (int i = 0; i < typesList.getLength(); i++) {
                 Element resType = (Element) typesList.item(i);
