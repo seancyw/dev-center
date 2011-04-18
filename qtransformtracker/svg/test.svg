@@ -52,11 +52,12 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#216778;stroke-width:1.25;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#216778;stroke-width:1.54238951;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect2987"
-       width="200.01021"
+       width="304.52313"
        height="161.6244"
-       x="117.1777"
-       y="543.2453" />
+       x="546.20154"
+       y="236.52946"
+       transform="matrix(0.8660254,0.5,-0.5,0.8660254,0,0)" />
   </g>
 </svg>
