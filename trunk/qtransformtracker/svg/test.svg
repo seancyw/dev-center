@@ -50,14 +50,5 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
-    <rect
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#216778;stroke-width:1.54238951;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-       id="rect2987"
-       width="304.52313"
-       height="161.6244"
-       x="546.20154"
-       y="236.52946"
-       transform="matrix(0.8660254,0.5,-0.5,0.8660254,0,0)" />
-  </g>
+     id="layer1" />
 </svg>
