@@ -14,8 +14,8 @@ namespace SpriteLightRock.SystemEx
     using Sprites;
     class CanvasEx : Canvas
     {
-        private static Sprite           _currentSprite;        
-        private Point _currentPoint;
+        private Sprite          _currentSprite;        
+        private Point           _currentPoint;
         
         public Sprite CurrentSprite
         {
@@ -23,11 +23,11 @@ namespace SpriteLightRock.SystemEx
             {
                 return _currentSprite;
             }
-        }
-        public void SetSprite(Sprite sprite)
-        {
-            _currentSprite = sprite;
-        }
+            set
+            {
+                _currentSprite = value;
+            }
+        }        
         
         public CanvasEx()
         	:base()

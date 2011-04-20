@@ -70,7 +70,7 @@ namespace SpriteLightRock.Sprites
         {
         	_bitmap = new BitmapImage();
         	_bitmap.BeginInit();
-        	_bitmap.UriSource = new Uri(ImageFile,UriKind.Absolute);
+            _bitmap.UriSource = new Uri(ImageFile);
         	_bitmap.EndInit();
         	return true;
         }

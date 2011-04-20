@@ -21,21 +21,20 @@ namespace SpriteLightRock
     /// </summary>
     public partial class SprFrameForm : UserControl
     {
-    	CanvasEx canvas;
-        public SprFrameForm()
+        Sprite sprite = new Sprite();
+    	public SprFrameForm()
         {
             InitializeComponent();
             Init();
         }
         public void Init()
         {
-        	canvas = new CanvasEx();
-            Sprite sprite = new Sprite();
-            sprite.ImageFile = @"E:\vietean\LightRock\SpriteLightRock\Images\test.png";
+        	canvasEx1 = new CanvasEx();            
+            sprite.ImageFile = System.IO.Path.GetFullPath(@"..\..\Images\test.png");
             sprite.LoadImage();
             sprite.Modules.Add(new Module(1, 34, 59, 106, 76));
             sprite.Modules.Add(new Module(2, 16, 142, 146, 19));
-            canvas.SetSprite(sprite);            
+            canvasEx1.CurrentSprite = sprite;            
         }
     }    
 }
