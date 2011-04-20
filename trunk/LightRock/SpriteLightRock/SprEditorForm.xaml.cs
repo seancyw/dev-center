@@ -30,8 +30,8 @@ namespace SpriteLightRock
             {
                 sprite.Modules.Add(new Module(i+1,1,2,3,4));
             }
-            lvViewModules.ItemsSource = sprite.Modules;            
-            canvasEx1.SetSprite(sprite);
+            lvViewModules.ItemsSource = sprite.Modules;
+            canvasEx1.CurrentSprite = sprite;
             MouseMove += new MouseEventHandler(SprEditorForm_MouseMove);
             //Test
         }
