@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define CASE_1
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,15 +19,18 @@ namespace SpriteLightRock.SystemEx
         static      private MatrixTransform _transform;
         static private ScaleTransform       _scale = new ScaleTransform();
         static private TranslateTransform   _translate;
-        private     Point                   _currentPoint;
+        static private     Point                   _currentPoint;
+        static private Point _pressedPoint;
         private const double MAX_WIDTH = 10000;
         private const double MAX_HEIGHT = 10000;
+        private const double MARGIN_LEFT = 100;
+        private const double MARGIN_TOP = 100;
 
         public Point Offset
         {
             get
             {
-                return new Point(300, 300);
+                return new Point(Center.X - MARGIN_LEFT,Center.Y - MARGIN_TOP);
             }
         }
 
@@ -52,8 +56,9 @@ namespace SpriteLightRock.SystemEx
         public CanvasEx()
         	:base()
         {
+            ClipToBounds = true;
             _transform = (MatrixTransform)MatrixTransform.Identity;
-            _translate = new TranslateTransform(-(Center.X - Offset.X), -(Center.Y - Offset.Y));
+            _translate = new TranslateTransform(-Offset.X, -Offset.Y);
         }
         public bool IsDrag
         {
@@ -62,8 +67,8 @@ namespace SpriteLightRock.SystemEx
         }
         public Point PointFressed
         {
-            get;
-            set;
+            get{return _pressedPoint;}
+            set{_pressedPoint = value;}
         }
         public Point PointCurrent
         {
@@ -84,9 +89,12 @@ namespace SpriteLightRock.SystemEx
             //_transform.Value.Rotate(45);
             dc.PushTransform(_scale);            
             dc.PushTransform(_translate);
+            
             dc.DrawLine(new Pen(Brushes.Red, 1),new Point(Center.X,0),new Point(Center.X,MAX_HEIGHT));
             dc.DrawLine(new Pen(Brushes.Green, 1), new Point(0, Center.Y), new Point(MAX_WIDTH, Center.Y));
             dc.DrawImage(CurrentSprite.Bitmap, new Rect(Center.X,Center.Y,CurrentSprite.Bitmap.Width,CurrentSprite.Bitmap.Height));
+
+            dc.DrawRectangle(Brushes.Red, new Pen(Brushes.Violet, 2), new Rect(PointFressed, new Size(10, 10)));
         }
         protected override void OnMouseDown(MouseButtonEventArgs e)
         {
@@ -94,7 +102,13 @@ namespace SpriteLightRock.SystemEx
             if (IsDrag == false)
             {
                 IsDrag = true;
-                PointFressed = e.GetPosition(this);                
+                PointFressed = e.GetPosition(this);
+#if !CASE_1
+                
+#else
+                PointFressed = new Point(PointFressed.X + Offset.X, PointFressed.Y + Offset.Y);                
+
+#endif
             }
         }
         protected override void OnMouseMove(MouseEventArgs e)
