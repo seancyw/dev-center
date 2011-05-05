@@ -51,8 +51,8 @@ namespace SpriteLightRock.SystemEx
             {
                 _currentSprite = value;
             }
-        }        
-        
+        }
+
         public CanvasEx()
         	:base()
         {
@@ -87,16 +87,19 @@ namespace SpriteLightRock.SystemEx
             if (CurrentSprite == null)
                 return;
             //_transform.Value.Rotate(45);
-            dc.PushTransform(_scale);            
+            dc.PushTransform(_scale);
             dc.PushTransform(_translate);
-            
+            //Draw he truc toa do
             dc.DrawLine(new Pen(Brushes.Red, 1),new Point(Center.X,0),new Point(Center.X,MAX_HEIGHT));
             dc.DrawLine(new Pen(Brushes.Green, 1), new Point(0, Center.Y), new Point(MAX_WIDTH, Center.Y));
             dc.DrawImage(CurrentSprite.Bitmap, new Rect(Center.X + 0.5, Center.Y + 0.5, CurrentSprite.Bitmap.Width, CurrentSprite.Bitmap.Height));
+            //
 
             //Size size = new Size();
             //size.Width = PointFressed
             dc.DrawEllipse(Brushes.Red, new Pen(Brushes.Red, 1), PointFressed, 3 / _scale.ScaleX, 3 / _scale.ScaleY);
+            //
+            dc.DrawRectangle(Brushes.Transparent,new Pen(Brushes.Green,1),new Rect(PointFressed,PointCurrent));
         }
         protected override void OnMouseDown(MouseButtonEventArgs e)
         {
@@ -106,17 +109,21 @@ namespace SpriteLightRock.SystemEx
                 IsDrag = true;
                 PointFressed = e.GetPosition(this);
 #if !CASE_1
-                
+
 #else
-                PointFressed = new Point(PointFressed.X/_scale.ScaleX + Offset.X, PointFressed.Y/_scale.ScaleY + Offset.Y);                
+                PointFressed = new Point(PointFressed.X/_scale.ScaleX + Offset.X, PointFressed.Y/_scale.ScaleY + Offset.Y);
 
 #endif
             }
         }
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            base.OnMouseMove(e);
-            PointCurrent = e.GetPosition(this);
+            if (IsDrag)
+            {
+                base.OnMouseMove(e);
+                PointCurrent = e.GetPosition(this);
+                PointCurrent = new Point(PointCurrent.X / _scale.ScaleX + Offset.X, PointCurrent.Y / _scale.ScaleY + Offset.Y);
+            }
         }
         protected override void OnMouseWheel(MouseWheelEventArgs e)
         {
