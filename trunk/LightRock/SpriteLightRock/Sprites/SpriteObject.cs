@@ -22,6 +22,7 @@ namespace SpriteLightRock.Sprites
             public const double DEFAULT_W = 10;
             public const double DEFAULT_H = 10;
         }
+
         #region Id
         public static readonly DependencyProperty IdProperty = DependencyProperty.Register(
             "Id",
@@ -37,16 +38,16 @@ namespace SpriteLightRock.Sprites
         #endregion
 
         #region <bold>X</bold>
-        public static readonly DependencyProperty XProperty = DependencyProperty.Register(
-            "X",
+        public static readonly DependencyProperty RectProperty = DependencyProperty.Register(
+            "Left",
             typeof(double),
-            typeof(SpriteObject),
+            typeof(Rect),
             new UIPropertyMetadata(null)
         );
         public double X
         {
-            get { return (double)GetValue(XProperty); }
-            set { SetValue(XProperty, value); }
+            get { return ((Rect)GetValue(RectProperty)).Left; }
+            set { SetValue((Rect)GetValue(RectProperty)).Left, value); }
         }
         #endregion
 
